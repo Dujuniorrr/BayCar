@@ -14,7 +14,7 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <title>BayCar</title>
 </head>
-<body class=" border border-0">
+<body class="bg-black border border-0">
 <div class="logo-container p-2 d-flex">
     <div class="nav-line" id="logo">
           <span class="">

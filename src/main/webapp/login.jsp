@@ -17,7 +17,7 @@
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         
     </head>
-    <body>
+    <body class="bg-black">
         <div class="vh-100 d-flex justify-content-center align-items-center ">
             <div class="col-md-5 p-5 shadow-sm rounded-5 bg-login">
                 <div class="container">

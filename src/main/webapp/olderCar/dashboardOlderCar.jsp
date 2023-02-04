@@ -26,8 +26,8 @@
     <script src="https://kit.fontawesome.com/6a5dd2730c.js"></script>
     <title>BayCar</title>
 </head>
-<body class=" border border-0">
-<<div class="logo-container p-2 d-flex">
+<body class=" bg-black border border-0">
+<div class="logo-container p-2 d-flex">
     <div class="nav-line" id="logo">
           <span class="">
             <a class="home" href="home">
