@@ -27,12 +27,12 @@
                 </div>
                 <form>
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label" style="color:  rgb(177, 13, 13);">Email</label>
-                        <input name="email" type="email" class="form-control border border-primary" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite o email">
+                        <label for="exampleInputEmail1" class="form-label fw-bold" style="color:  rgb(177, 13, 13);">Email</label>
+                        <input name="email" required type="email" class="form-control border border-primary" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Digite o email">
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label" style="color:  rgb(177, 13, 13);">Senha</label>
-                        <input name="password" type="password" class="form-control border border-primary" id="exampleInputPassword1" style="border: 1px solid red;" placeholder="Digite a senha">
+                        <label for="exampleInputPassword1" class="form-label fw-bold" style="color:  rgb(177, 13, 13);">Senha</label>
+                        <input name="password" required type="password" class="form-control border border-primary" id="exampleInputPassword1" style="border: 1px solid red;" placeholder="Digite a senha">
                     </div>
                     <div class="col-sm-12 form-group mb-0 mt-3 flex d-flex justify-content-around">
                         <button class="btn btn-primary col-md-6 col-10">Login</button>
@@ -46,7 +46,7 @@
                     managerDAO.verify(manager);
                     if (manager.getId() != null) {
                         System.out.println("Redirecting");
-                        response.sendRedirect("home.jsp");
+                        response.sendRedirect("home");
                         session.setAttribute("manager", manager.getEmail());
                         session.setAttribute("pass", manager.getPassword());
                     }

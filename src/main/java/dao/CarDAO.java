@@ -91,7 +91,7 @@ public class CarDAO {
 
     public ArrayList<Car> listCar(){
         ArrayList<Car> cars = new ArrayList<Car>();
-        String sql = "SELECT * FROM car";
+        String sql = "SELECT * FROM car ORDER BY name";
 
         try {
             Connection con = new DAO().conectar();
@@ -120,4 +120,68 @@ public class CarDAO {
 
         }
     }
+
+    public ArrayList<Car> listCarSold(){
+        ArrayList<Car> cars = new ArrayList<Car>();
+        String sql = "SELECT * FROM car WHERE state = 'Vendido' ORDER BY name";
+
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pstm = con.prepareStatement(sql);
+
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                Car car = new Car();
+                car.setName(rs.getString("name"));
+                car.setYear(rs.getInt("year_car"));
+                car.setId(rs.getString("id"));
+                car.setValue(rs.getFloat("value_car"));
+                car.setPathImage(rs.getString("path_img"));
+                car.setDesc(rs.getString("description"));
+                car.setMark(rs.getString("mark"));
+                car.setModel(rs.getString("model"));
+                car.setState(rs.getString("state"));
+
+                cars.add(car);
+            }
+            con.close();
+            return cars;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Car> listCarDisponible(){
+        ArrayList<Car> cars = new ArrayList<Car>();
+        String sql = "SELECT * FROM car WHERE state = 'Disponivel' ORDER BY name";
+
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pstm = con.prepareStatement(sql);
+
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+                Car car = new Car();
+                car.setName(rs.getString("name"));
+                car.setYear(rs.getInt("year_car"));
+                car.setId(rs.getString("id"));
+                car.setValue(rs.getFloat("value_car"));
+                car.setPathImage(rs.getString("path_img"));
+                car.setDesc(rs.getString("description"));
+                car.setMark(rs.getString("mark"));
+                car.setModel(rs.getString("model"));
+                car.setState(rs.getString("state"));
+
+                cars.add(car);
+            }
+            con.close();
+            return cars;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return null;
+
+        }
+    }
+
 }

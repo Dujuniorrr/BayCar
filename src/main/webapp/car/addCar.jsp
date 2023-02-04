@@ -1,12 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head >
     <meta charset="UTF-8"/>
     <!--Importações do BOOTSTRAP-->
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -19,17 +18,14 @@
 <div class="logo-container p-2 d-flex">
     <div class="nav-line" id="logo">
           <span class="">
-            <a class="home" href="/home">
-              <img width="115px" height="110px" src="img/logo.png" class="rounded-circle" />
+            <a class="home" href="../home">
+              <img width="115px" height="110px" src="../img/logo.png" class="rounded-circle" />
             </a>
           </span>
     </div>
     <div class="flex-shrink-1 mt-4 d-flex justify-content-end col-md-6 col-12 pe-3">
           <span>
-            <a class="text-red col-3 col-4 p-2 mr-3 border border-1 border-red rounded-pill" href="/baycar/home"
-            >Configurações</a>
-            <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="/login">Login</a>
-            <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="#">Logout</a>
+            <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="../logout">Logout</a>
           </span>
     </div>
 </div>
@@ -51,18 +47,18 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="/home/available_new_car" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="../dashboardCar" style="margin-left: 10px"
                         >Carros Novos</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="/home/available_old_car" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="../dashboardOlderCar" style="margin-left: 10px"
                         >Carros Usados</a
                         >
                     </li>
                     <li class="nav-item">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="/home/available_old_car" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="../dashboardClient" style="margin-left: 10px"
                         >Clientes</a
                         >
                     </li>

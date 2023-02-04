@@ -26,7 +26,7 @@ public class RentDAO {
     }
 
     public void editRentOfOlderCar(Rent rent, String idOlderCar){
-        String sql = "UPDATE rent SET date_rent = ?, date_devolution = ?, mileage =?, id_client =? WHERE id_older_car";
+        String sql = "UPDATE rent SET date_rent = ?, date_devolution = ?, mileage =?, id_client =? WHERE id_older_car = ?";
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pst = con.prepareStatement(sql);
@@ -34,6 +34,7 @@ public class RentDAO {
             pst.setDate(2, rent.getDateDevolution());
             pst.setFloat(1, rent.getMileage());
             pst.setString(3,rent.getClient().getId());
+            pst.setString(4, idOlderCar);
             pst.executeUpdate();
             con.close();
         } catch (Exception e) {
@@ -50,7 +51,7 @@ public class RentDAO {
             pstm.setString(1, idOlderCar);
             ResultSet rs = pstm.executeQuery();
             if(rs.next()) {
-                rent.setDate(rs.getDate("date_sale"));
+                rent.setDate(rs.getDate("date_rent"));
                 rent.setDateDevolution(rs.getDate("date_devolution"));
                 rent.setMileage(rs.getFloat("mileage"));
                 Client client = new Client();
@@ -76,7 +77,7 @@ public class RentDAO {
             if(rs.next()){
                 Rent rent = new Rent();
                 rent.setId(rs.getString("id"));
-                rent.setDate(rs.getDate("date_sale"));
+                rent.setDate(rs.getDate("date_rent"));
                 rent.setDateDevolution(rs.getDate("date_devolution"));
                 rent.setMileage(rs.getFloat("mileage"));
                 Client client = new Client();

@@ -1,6 +1,7 @@
 body{
     background-image: url(../img/background.jpg);
     background-size: cover;
+    min-width: 407px;
 }
 .bg-red{
     background-color: rgb(177, 13, 13);
@@ -16,7 +17,6 @@ body{
 .text-red:hover{
     color: rgb(177, 13, 13);
     background-color: white;
-    transition: 1s;
 }
 .bg-red-gradient{
     background:  linear-gradient(-90deg, #860b0b, #8f0909,#8f0d0d, #bb1f1f);
@@ -38,5 +38,8 @@ body{
     }
 }
 .bg-login{
-     backdrop-filter: brightness(50%);
+    backdrop-filter: brightness(50%);
+}
+.btn-lg{
+    color: #860b0b;
 }

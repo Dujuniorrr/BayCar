@@ -1,5 +1,9 @@
 package model;
 
+import dao.CarDAO;
+
+import java.util.ArrayList;
+
 public class Car {
     private float value;
     private String name;
@@ -15,6 +19,13 @@ public class Car {
 
     public Car(){}
 
+    public ArrayList<Car> listCarDisponible(){
+        return new CarDAO().listCarDisponible();
+    }
+
+    public ArrayList<Car> listCarSold(){
+        return new CarDAO().listCarSold();
+    }
 
     public float getValue() {
         return value;
