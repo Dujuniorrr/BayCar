@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Rent extends Sale {
     private Date dateDevolution;
-    private float millage;
+    private float mileage;
 
     public Date getDateDevolution() {
         return dateDevolution;
@@ -14,11 +14,11 @@ public class Rent extends Sale {
         this.dateDevolution = dateDevolution;
     }
 
-    public float getMillage() {
-        return millage;
+    public float getMileage() {
+        return mileage;
     }
 
-    public void setMillage(float millage) {
-        this.millage = millage;
+    public void setMileage(float mileage) {
+        this.mileage = mileage;
     }
 }

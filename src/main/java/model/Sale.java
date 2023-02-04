@@ -5,7 +5,6 @@ import java.sql.Date;
 public class Sale {
     private String id;
     private Date date;
-    private Car car = (Car) new OlderCar();
     private Client client;
 
     public String getId() {
@@ -22,14 +21,6 @@ public class Sale {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
     }
 
     public Client getClient() {

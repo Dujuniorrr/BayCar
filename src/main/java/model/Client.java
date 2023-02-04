@@ -1,6 +1,9 @@
 package model;
 
+import dao.ClientDAO;
+
 public class Client {
+
     private String name;
     private String email;
     private String id;
@@ -8,12 +11,19 @@ public class Client {
     private String phone;
     private String cpf;
 
-    public String getName() {
-        return name;
+    public Client() {
+
     }
 
+    public void recoverClient(String id){
+        this.setId(id);
+        new ClientDAO().recoverClient(this);
+    }
     public void setName(String name) {
         this.name = name;
+    }
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {

@@ -8,17 +8,71 @@ import java.util.ArrayList;
 import model.*;
 
 public class CarDAO {
-    public Car recoverCar(String id){
-        Car car = new Car();
+
+    public void addCar(Car car){
+        String sql = "INSERT INTO car(name, value_car, year_car, path_img, description, mark, model, state)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, car.getName());
+            pst.setFloat(2, car.getValue());
+            pst.setInt(3, car.getYear());
+            pst.setString(4, car.getPathImage());
+            pst.setString(5, car.getDesc());
+            pst.setString(6, car.getMark());
+            pst.setString(7, car.getModel());
+            pst.setString(8, car.getState());
+            pst.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editCar(Car car){
+        String sql = "UPDATE car SET name = ?, value_car = ?, year_car = ?, " +
+                "path_img = ? , description = ?, mark = ? , model = ? , state = ? WHERE id = ?";;
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, car.getName());
+            pst.setFloat(2, car.getValue());
+            pst.setInt(3, car.getYear());
+            pst.setString(4, car.getPathImage());
+            pst.setString(5, car.getDesc());
+            pst.setString(6, car.getMark());
+            pst.setString(7, car.getModel());
+            pst.setString(8, car.getState());
+            pst.setString(9, car.getId());
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteCar(String id){
+        String sql = "DELETE FROM car WHERE id = ?";
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rst = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void recoverCar(Car car){
         String sql = "SELECT * FROM car WHERE id = ?";
 
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, id);
+            pstm.setString(1, car.getId());
 
             ResultSet rs = pstm.executeQuery();
-            if(rs.next()){
+            if(rs.next()) {
                 car.setName(rs.getString("name"));
                 car.setYear(rs.getInt("year_car"));
                 car.setId(rs.getString("id"));
@@ -28,18 +82,11 @@ public class CarDAO {
                 car.setMark(rs.getString("mark"));
                 car.setModel(rs.getString("model"));
                 car.setState(rs.getString("state"));
-                car.setClient(new ClientDAO().recoverClient(rs.getString("id_client")));
-
-                con.close();
-                return car;
-            } else {
-                con.close();
-                return null;
             }
+            con.close();
         } catch(Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     public ArrayList<Car> listCar(){
@@ -62,7 +109,6 @@ public class CarDAO {
                 car.setMark(rs.getString("mark"));
                 car.setModel(rs.getString("model"));
                 car.setState(rs.getString("state"));
-                car.setClient(new ClientDAO().recoverClient(rs.getString("id_client")));
 
                 cars.add(car);
             }
@@ -70,7 +116,8 @@ public class CarDAO {
             return cars;
         } catch(Exception e) {
             e.printStackTrace();
+            return null;
+
         }
-        return null;
     }
 }

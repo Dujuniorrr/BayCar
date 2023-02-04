@@ -8,34 +8,76 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class ClientDAO {
-    public Client recoverClient(String id){
-        Client cli = new Client();
+
+    public void addCar(Client client){
+        String sql = "INSERT INTO client(name, email, phone, adress, cpf) VALUES (?,?,?,?,?)";
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, client.getName());
+            pst.setString(2, client.getEmail());
+            pst.setString(3, client.getPhone());
+            pst.setString(4, client.getAdress());
+            pst.setString(5, client.getCpf());
+            pst.executeUpdate();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void editCar(Client client){
+        String sql = "UPDATE client SET name = ?, email = ?, phone = ?, adress = ?, cpf = ? WHERE id = ?";;
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, client.getName());
+            pst.setString(2, client.getEmail());
+            pst.setString(3, client.getPhone());
+            pst.setString(4, client.getAdress());
+            pst.setString(5, client.getCpf());
+            pst.setString(6, client.getId());
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void deleteCar(String id){
+        //me lembra de te falar uma coisa sobre esse metódo antes dele ser utilizado, é importante
+        String sql = "DELETE FROM client WHERE id = ?";
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rst = ps.executeQuery();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void recoverClient(Client client){
         String sql = "SELECT * FROM client WHERE id = ?";
 
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, id);
+            pstm.setString(1, client.getId());
             ResultSet rs = pstm.executeQuery();
 
             if(rs.next()){
-                cli.setName(rs.getString("name"));
-                cli.setEmail(rs.getString("email"));
-                cli.setId(rs.getString("id"));
-                cli.setAdress(rs.getString("adress"));
-                cli.setPhone(rs.getString("phone"));
-                cli.setCpf(rs.getString("cpf"));
-
+                client.setName(rs.getString("name"));
+                client.setEmail(rs.getString("email"));
+                client.setId(rs.getString("id"));
+                client.setAdress(rs.getString("adress"));
+                client.setPhone(rs.getString("phone"));
+                client.setCpf(rs.getString("cpf"));
                 con.close();
-                return cli;
             } else {
                 con.close();
-                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     public ArrayList<Client> listClient(){
@@ -55,14 +97,13 @@ public class ClientDAO {
                 cli.setAdress(rs.getString("adress"));
                 cli.setPhone(rs.getString("phone"));
                 cli.setCpf(rs.getString("cpf"));
-
                 clis.add(cli);
             }
             con.close();
             return clis;
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 }

@@ -10,17 +10,11 @@ public class Car {
     private String model;
     private String id;
     private String state;
-    private Client client;
+
+    private Sale sale;
 
     public Car(){}
 
-    public Client getClient() {
-        return this.client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
 
     public float getValue() {
         return value;
@@ -92,5 +86,13 @@ public class Car {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Sale getSale() {
+        return sale;
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
     }
 }

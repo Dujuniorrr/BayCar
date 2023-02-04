@@ -1,13 +1,13 @@
 package model;
 
 public class OlderCar extends Car {
-    private int mileage;
+    private float mileage;
 
-    public int getMileage() {
+    public float getMileage() {
         return mileage;
     }
 
-    public void setMileage(int mileage) {
+    public void setMileage(float mileage) {
         this.mileage = mileage;
     }
 }
