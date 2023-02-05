@@ -95,7 +95,7 @@ public class ControllerCar extends HttpServlet {
         if(car.getState().equals("Vendido")){
             response.sendRedirect("dashboardCar");
         }
-        else{
+        else {
             response.sendRedirect("home");
         }
     }

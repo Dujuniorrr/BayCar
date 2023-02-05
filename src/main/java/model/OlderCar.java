@@ -29,7 +29,7 @@ public class OlderCar extends Car {
         new OlderCarDAO().recoverOlderCar(this);
     }
 
-    public void editOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float mileage, String id) {
+    public void editOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float mileage, String state,String id) {
         this.setName(name);
         this.setMark(mark);
         this.setPathImage(pathImage);
@@ -38,8 +38,9 @@ public class OlderCar extends Car {
         this.setYear(year);
         this.setValue(value);
         this.setMileage(mileage);
-        this.setState("Disponivel");
+        this.setState(state);
         this.setId(id);
+
         new OlderCarDAO().editCar(this);
     }
 

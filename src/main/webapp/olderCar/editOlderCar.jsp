@@ -87,10 +87,12 @@
         </div>
     </nav>
     <form class="bg-dark" action="editOlderCar">
+        <div class="d-none"> <input name="id" value="<%=car.getId()%>" ></div>
+        <div class="d-none"> <input name="state" value="<%=car.getState()%>" ></div>
         <div class="row jumbotron box8 p-4 border-form m-0">
             <div class="col-sm-12 mx-t3 mb-4">
                 <div class="col-10 col-md-6 m-auto bg-red-gradient p-1 rounded-2">
-                    <h2 class="text-center text-light"> Adicionar Carro</h2>
+                    <h2 class="text-center text-light"> Editar Carro Usado</h2>
                 </div>
             </div>
 
@@ -120,7 +122,7 @@
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="imgPath"> Imagem </label>
-                <input type="text"  class="form-control" name="imgPath" id="imgPath" placeholder="Digite o nome da imagem." value="<%= car.getPathImage() %>" required>
+                <input type="text" class="form-control" name="imgPath" id="imgPath" placeholder="Digite o nome da imagem." value="<%= car.getPathImage() %>" required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="desc"> Descrição</label>
