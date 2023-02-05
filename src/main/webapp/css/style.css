@@ -2,7 +2,7 @@ body{
     background-color: black;
     /*background-image: url(../img/background.jpg);*/
     background-size: cover;
-    min-width: 407px;
+    min-width: 350px;
 }
 .bg-red{
     background-color: rgb(177, 13, 13);
@@ -31,6 +31,9 @@ body{
 @media (max-width: 500px) {
     .nav-line{
         width: 40%;
+    }
+    body{
+        font-size: 0.4em;
     }
 }
 @media (min-width: 500px) {

@@ -18,7 +18,7 @@
     <meta charset="UTF-8"/>
     <link rel="icon" href="img/logo.png">
     <!--Importações do BOOTSTRAP-->
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
@@ -41,7 +41,7 @@
             <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="busca" required>
             <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
-        <span class="col-2 mt-1">
+        <span class="col-3 col-md-2 mt-1">
             <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="logout.jsp">Logout</a>
           </span>
     </div>
@@ -98,8 +98,8 @@
         <div class="card mt-2 col-12 p-1 mt-2 border-top-0 pt-0 border-2 border-dark mb-4" style="background-color: #444d55">
             <div class="row g-0 mt-2 bg-login">
                 <div class="mt-0 p-2 m-auto bg-red row">
-                    <div class="card-title d-flex m-auto col-4 fw-bold text-light" style="color: white; font-size: large;"><%= listOlderCarsSolds.get(i).getName()%></div>
-                    <div class="d-flex justify-content-start m-auto col-5" style="color: white; font-size: x-large;">R$ <%= listOlderCarsSolds.get(i).getValue()%></div>
+                    <div class="card-title d-flex m-auto col-3 fw-bold text-light" style="color: white; font-size: large;"><%= listOlderCarsSolds.get(i).getName()%></div>
+                    <div class="d-flex justify-content-start m-auto col-6" style="color: white; font-size: x-large;">R$ <%= listOlderCarsSolds.get(i).getValue()%></div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end m-auto">
                             <a href="viewOlderCar">
@@ -129,13 +129,13 @@
                             <div class="col-6 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Quilometagem</span> <span class="d-block"><%= listOlderCarsSolds.get(i).getMileage()%></span></div>
                             </div>
-                            <div class="col-4 justify-content-center">
+                            <div class="col-6 col-md-4 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Modelo</span> <span class="d-block"><%= listOlderCarsSolds.get(i).getModel() %></span></div>
                             </div>
-                            <div class="col-4 justify-content-center">
+                            <div class="col-6 col-md-4 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Status</span> <span class="d-block"><%= listOlderCarsSolds.get(i).getState() %></span></div>
                             </div>
-                            <div class="col-4 justify-content-center col-2">
+                            <div class="col-6 col-md-4 justify-content-center col-2">
                                 <div class=" text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Marca</span> <span class="d-block"><%= listOlderCarsSolds.get(i).getMark() %></span></div>
                             </div>
 
@@ -160,8 +160,8 @@
         <div class="card mt-2 col-12 p-1 border-top-0 pt-0 border-2 border-dark mb-4" style="background-color: #444d55">
             <div class="row g-0 mt-2 bg-login">
                 <div class="mt-0 p-2 m-auto bg-red row">
-                    <div class="card-title d-flex m-auto col-4 fw-bold text-light" style="color: white; font-size: large;"><%= listOlderCarsRented.get(i).getName()%></div>
-                    <div class="d-flex justify-content-start m-auto col-5" style="color: white; font-size: x-large;">R$ <%= listOlderCarsRented.get(i).getValue()%></div>
+                    <div class="card-title d-flex m-auto col-3 fw-bold text-light" style="color: white; font-size: large;"><%= listOlderCarsRented.get(i).getName()%></div>
+                    <div class="d-flex justify-content-start m-auto col-6" style="color: white; font-size: x-large;">R$ <%= listOlderCarsRented.get(i).getValue()%></div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end m-auto">
                             <a href="sale">
@@ -197,13 +197,13 @@
                             <div class="col-6 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Quilometagem</span> <span class="d-block"><%= listOlderCarsRented.get(i).getMileage()%></span></div>
                             </div>
-                            <div class="col-4 justify-content-center">
+                            <div class="col-6 col-md-4 -content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Modelo</span> <span class="d-block"><%= listOlderCarsRented.get(i).getModel() %></span></div>
                             </div>
-                            <div class="col-4 justify-content-center">
+                            <div class="col-6 col-md-4 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Status</span> <span class="d-block"><%= listOlderCarsRented.get(i).getState() %></span></div>
                             </div>
-                            <div class="col-4 justify-content-center col-2">
+                            <div class="col-6 col-md-4 justify-content-center col-2">
                                 <div class=" text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Marca</span> <span class="d-block"><%= listOlderCarsRented.get(i).getMark() %></span></div>
                             </div>
 
