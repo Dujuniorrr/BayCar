@@ -11,6 +11,7 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8"/>
+    <link rel="icon" href="img/logo.png">
     <!--Importações do BOOTSTRAP-->
 
     <link rel="stylesheet" href="css/style.css">
@@ -94,7 +95,7 @@
                         height="100%"
                         src="imgCars/<%= car.getPathImage() %>">
                 <div class="col-sm-12 form-group mb-0 mt-3 flex d-flex justify-content-center">
-                    <a href="selectCar?id=<%= car.getId() %>" class="m-2">
+                    <a href="selectOlderCar?id=<%= car.getId() %>" class="m-2">
                         <button class="btn btn-light  float-right " style="color: #8f0d0d; font-weight: bold;"><i class="fa-solid fa-pen"></i> Editar</button>
                     </a>
                     <a href="javascript: deleteOlderCar(<%= car.getId() %>)" class="m-2">
@@ -126,7 +127,7 @@
                 </div>
                 <div class="col-sm-6 form-group text-light mt-3">
                     <label for="mileage"> Quilometragem </label>
-                    <input type="mileage" readonly class="form-control" name="mileage" id="mileage" placeholder="Digite o modelo." value="<%= car.getModel() %>" required>
+                    <input type="mileage" readonly class="form-control" name="mileage" id="mileage" placeholder="Digite o modelo." value="<%= car.getMileage() %>" required>
                 </div>
                 <div class="col-sm-6 form-group text-light mt-3">
                     <label for="desc"> Descrição</label>

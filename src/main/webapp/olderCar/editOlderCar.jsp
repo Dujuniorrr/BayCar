@@ -12,9 +12,10 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8"/>
+    <link rel="icon" href="img/logo.png">
     <!--Importações do BOOTSTRAP-->
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -28,8 +29,8 @@
 <div class="logo-container p-2 d-flex">
     <div class="nav-line" id="logo">
           <span class="">
-            <a class="home" href="../home">
-              <img width="115px" height="110px" src="../img/logo.png" class="rounded-circle" />
+            <a class="home" href="home">
+              <img width="115px" height="110px" src="img/logo.png" class="rounded-circle" />
             </a>
           </span>
     </div>
@@ -61,23 +62,23 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../home" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="home" style="margin-left: 10px"
                         >Home</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../dashboardCar" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="dashboardCar" style="margin-left: 10px"
                         >Carros Novos</a
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../dashboardOlderCar" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="dashboardOlderCar" style="margin-left: 10px"
                         >Carros Usados</a
                         >
                     </li>
                     <li class="nav-item">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="../dashboardClient" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="dashboardClient" style="margin-left: 10px"
                         >Clientes</a
                         >
                     </li>
@@ -85,7 +86,7 @@
             </div>
         </div>
     </nav>
-    <form class="bg-dark" action="../editOlderCar">
+    <form class="bg-dark" action="editOlderCar">
         <div class="row jumbotron box8 p-4 border-form m-0">
             <div class="col-sm-12 mx-t3 mb-4">
                 <div class="col-10 col-md-6 m-auto bg-red-gradient p-1 rounded-2">
@@ -99,7 +100,7 @@
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="value">Valor do Carro</label>
-                <input type="text"  class="form-control border-form" name="value" id="value" placeholder="Digite o valor do carro." value="<%= car.getValue() %>" required>
+                <input type="text" maxlength="10" class="form-control border-form" name="value" id="value" placeholder="Digite o valor do carro." value="<%= car.getValue() %>" required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="year">Ano de Fabricação</label>
@@ -114,8 +115,12 @@
                 <input type="text"  class="form-control" name="model" id="model" placeholder="Digite o modelo." value="<%= car.getModel() %>" required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
-                <label for="millage">Quilometragem</label>
-                <input type="text"  min="1900" class="form-control" name="millage" id="millage" placeholder="Digite a kilometragem do carro." value="<%= car.getMileage() %>" required>
+                <label for="mileage">Quilometragem</label>
+                <input type="text"  min="1900" class="form-control" name="mileage" id="mileage" placeholder="Digite a kilometragem do carro." value="<%= car.getMileage() %>" required>
+            </div>
+            <div class="col-sm-6 form-group text-light mt-3">
+                <label for="imgPath"> Imagem </label>
+                <input type="text"  class="form-control" name="imgPath" id="imgPath" placeholder="Digite o nome da imagem." value="<%= car.getPathImage() %>" required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="desc"> Descrição</label>
@@ -140,7 +145,7 @@
             e.target.value = v;
         }
 
-        const input2 = document.getElementById("millage");
+        const input2 = document.getElementById("mileage");
 
         input2.addEventListener("keyup", formatMoed);
 
