@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/dashboardOlderCar"})
+@WebServlet(urlPatterns = {"/dashboardOlderCar", "/addOlderCar", "/editOlderCar", "/viewOlderCar", "/deleteOlderCar"})
 public class ControllerOlderCar extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -25,18 +25,77 @@ public class ControllerOlderCar extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
-        if(action.equals("/dashboardOlderCar")){
+        if(action.equals("/dashboardOlderCar")) {
             dashboardOlderCar(request, response);
+        } else if (action.equals("/addOlderCar")) {
+            addOlderCar(request, response);
+        } else if (action.equals("/editOlderCar")) {
+            editOlderCar(request, response);
+        } else if (action.equals("/viewOlderCar")) {
+            viewOlderCar(request, response);
+        } else if (action.equals("/deleteOlderCar")) {
+            deleteOlderCar(request, response);
         }
+    }
 
+    public void deleteOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        olderCar.recoverOlderCar(request.getParameter("id"));
+        olderCar.deleteOlderCar(request.getParameter("id"));
+
+        if(olderCar.getState().equals("Disponivel")) {
+            response.sendRedirect("home");
+        } else {
+            response.sendRedirect("dashboardOlderCar");
+        }
+    }
+
+    public void viewOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        olderCar.recoverOlderCar(id);
+        request.setAttribute("car", olderCar);
+        RequestDispatcher rd = request.getRequestDispatcher("olderCar/viewOlderCar.jsp");
+        rd.forward(request, response);
+    }
+
+    public void editOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        int year = Integer.parseInt(request.getParameter("year"));
+        float value = Float.parseFloat(request.getParameter("value"));
+        float millage = Float.parseFloat(request.getParameter("millage"));
+        String desc = request.getParameter("desc");
+        String model = request.getParameter("model");
+        String mark = request.getParameter("mark");
+        String pathImg = request.getParameter("imgPath");
+        String state = request.getParameter("state");
+        String pathImage = request.getParameter("imgPath");
+
+        olderCar.editOlderCar(name, mark, pathImage, model, desc, year, value, millage);
+        response.sendRedirect("viewOlderCar?id="+id);
     }
 
     public void dashboardOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<OlderCar> olderCarsSold = olderCar.listOlderCarSold();
         ArrayList<OlderCar> olderCarsRented = olderCar.listOlderCarRented();
+
         request.setAttribute("olderCarsSold", olderCarsSold);
         request.setAttribute("olderCarsRented", olderCarsRented);
+
         RequestDispatcher rd = request.getRequestDispatcher("olderCar/dashboardOlderCar.jsp");
         rd.forward(request, response);
+    }
+
+    public void addOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        int year = Integer.parseInt(request.getParameter("year"));
+        float value = Float.parseFloat(request.getParameter("value"));
+        float millage = Float.parseFloat(request.getParameter("millage"));
+        String desc = request.getParameter("desc");
+        String model = request.getParameter("model");
+        String mark = request.getParameter("mark");
+        String pathImg = request.getParameter("imgPath");
+
+        olderCar.addOlderCar(name, mark, pathImg, model, desc, year, value, millage);
+        response.sendRedirect("home");
     }
 }

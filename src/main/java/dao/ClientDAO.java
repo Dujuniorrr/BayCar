@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ClientDAO {
 
-    public void addCar(Client client){
+    public void addClient(Client client){
         String sql = "INSERT INTO client(name, email, phone, adress, cpf) VALUES (?,?,?,?,?)";
         try {
             Connection con = new DAO().conectar();
@@ -26,7 +26,7 @@ public class ClientDAO {
         }
     }
 
-    public void editCar(Client client){
+    public void editClient(Client client){
         String sql = "UPDATE client SET name = ?, email = ?, phone = ?, adress = ?, cpf = ? WHERE id = ?";;
         try {
             Connection con = new DAO().conectar();
@@ -44,7 +44,7 @@ public class ClientDAO {
         }
     }
 
-    public void deleteCar(String id){
+    public void deleteClient(String id){
         //me lembra de te falar uma coisa sobre esse metódo antes dele ser utilizado, é importante
         String sql = "DELETE FROM client WHERE id = ?";
         try {

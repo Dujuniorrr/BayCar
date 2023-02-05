@@ -8,6 +8,40 @@ import java.util.ArrayList;
 public class OlderCar extends Car {
     private float mileage;
 
+    public void addOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float millage) {
+        this.setName(name);
+        this.setMark(mark);
+        this.setPathImage(pathImage);
+        this.setModel(model);
+        this.setDesc(desc);
+        this.setYear(year);
+        this.setValue(value);
+        this.setMileage(millage);
+        this.setState("Disponivel");
+        new OlderCarDAO().addCar(this);
+    }
+    public void deleteOlderCar(String id){
+        new OlderCarDAO().deleteCar(id);
+    }
+
+    public void recoverOlderCar(String id){
+        this.setId(id);
+        new OlderCarDAO().recoverOlderCar(this);
+    }
+
+    public void editOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float millage) {
+        this.setName(name);
+        this.setMark(mark);
+        this.setPathImage(pathImage);
+        this.setModel(model);
+        this.setDesc(desc);
+        this.setYear(year);
+        this.setValue(value);
+        this.setMileage(millage);
+        this.setState("Disponivel");
+        new OlderCarDAO().editCar(this);
+    }
+
     public ArrayList<OlderCar> listOlderCarDisponible(){
         return new OlderCarDAO().listOlderCarDisponible();
     }

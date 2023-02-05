@@ -3,7 +3,6 @@ package model;
 import dao.ClientDAO;
 
 public class Client {
-
     private String name;
     private String email;
     private String id;
@@ -13,6 +12,16 @@ public class Client {
 
     public Client() {
 
+    }
+
+    public void addClient(String name, String email, String adress, String phone, String cpf){
+        setName(name);
+        setEmail(email);
+        setAdress(adress);
+        setPhone(phone);
+        setCpf(cpf);
+
+        new ClientDAO().addClient(this);
     }
 
     public void recoverClient(String id){

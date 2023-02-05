@@ -79,7 +79,7 @@
                     </li>
                     <li class="nav-item">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="dashboardClient" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="client/addClient.jsp" style="margin-left: 10px"
                         >Clientes</a
                         >
                     </li>
