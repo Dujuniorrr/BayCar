@@ -74,7 +74,6 @@ public class ControllerOlderCar extends HttpServlet {
 
     public void editOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
-        System.out.println(id);
         String name = request.getParameter("name");
         int year = Integer.parseInt(request.getParameter("year"));
         float value = Float.parseFloat(request.getParameter("value"));
