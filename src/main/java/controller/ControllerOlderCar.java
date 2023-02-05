@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/dashboardOlderCar", "/addOlderCar", "/editOlderCar", "/viewOlderCar", "/deleteOlderCar"})
+@WebServlet(urlPatterns = {"/dashboardOlderCar", "/addOlderCar",
+        "/editOlderCar", "/viewOlderCar", "/deleteOlderCar",
+        "/selectOlderCar"})
 public class ControllerOlderCar extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +37,18 @@ public class ControllerOlderCar extends HttpServlet {
             viewOlderCar(request, response);
         } else if (action.equals("/deleteOlderCar")) {
             deleteOlderCar(request, response);
+        } else if (action.equals("/selectOlderCar")) {
+            selectOlderCar(request, response);
         }
+    }
+
+    public void selectOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        System.out.println(id);
+        olderCar.recoverOlderCar(id);
+        request.setAttribute("car", olderCar);
+        RequestDispatcher rd = request.getRequestDispatcher("olderCar/editOlderCar.jsp");
+        rd.forward(request, response);
     }
 
     public void deleteOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,26 +64,28 @@ public class ControllerOlderCar extends HttpServlet {
 
     public void viewOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+        System.out.println(id);
         olderCar.recoverOlderCar(id);
         request.setAttribute("car", olderCar);
+
         RequestDispatcher rd = request.getRequestDispatcher("olderCar/viewOlderCar.jsp");
         rd.forward(request, response);
     }
 
     public void editOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+        System.out.println(id);
         String name = request.getParameter("name");
         int year = Integer.parseInt(request.getParameter("year"));
         float value = Float.parseFloat(request.getParameter("value"));
-        float millage = Float.parseFloat(request.getParameter("millage"));
+        float mileage = Float.parseFloat(request.getParameter("mileage"));
         String desc = request.getParameter("desc");
         String model = request.getParameter("model");
         String mark = request.getParameter("mark");
-        String pathImg = request.getParameter("imgPath");
-        String state = request.getParameter("state");
         String pathImage = request.getParameter("imgPath");
+        String state = request.getParameter("state");
 
-        olderCar.editOlderCar(name, mark, pathImage, model, desc, year, value, millage);
+        olderCar.editOlderCar(name, mark, pathImage, model, desc, year, value, mileage, state, id);
         response.sendRedirect("viewOlderCar?id="+id);
     }
 
@@ -89,13 +104,13 @@ public class ControllerOlderCar extends HttpServlet {
         String name = request.getParameter("name");
         int year = Integer.parseInt(request.getParameter("year"));
         float value = Float.parseFloat(request.getParameter("value"));
-        float millage = Float.parseFloat(request.getParameter("millage"));
+        float mileage = Float.parseFloat(request.getParameter("mileage"));
         String desc = request.getParameter("desc");
         String model = request.getParameter("model");
         String mark = request.getParameter("mark");
         String pathImg = request.getParameter("imgPath");
 
-        olderCar.addOlderCar(name, mark, pathImg, model, desc, year, value, millage);
+        olderCar.addOlderCar(name, mark, pathImg, model, desc, year, value, mileage);
         response.sendRedirect("home");
     }
 }

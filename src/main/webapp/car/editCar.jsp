@@ -11,6 +11,7 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8"/>
+    <link rel="icon" href="img/logo.png">
     <!--Importações do BOOTSTRAP-->
 
     <link rel="stylesheet" href="css/style.css">
@@ -99,7 +100,7 @@
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="value">Valor do Carro</label>
-                <input type="text"  class="form-control border-form" name="value" id="value" placeholder="Digite o valor do carro." value="<%= car.getValue() %>" required>
+                <input type="text" maxlength="10" class="form-control border-form" name="value" id="value" placeholder="Digite o valor do carro." value="<%= car.getValue() %>" required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="year">Ano de Fabricação</label>

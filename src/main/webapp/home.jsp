@@ -16,6 +16,7 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8"/>
+    <link rel="icon" href="img/logo.png">
     <!--Importações do BOOTSTRAP-->
 
     <link rel="stylesheet" href="css/style.css">
@@ -175,7 +176,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mt-2">
-                    <a href="viewOlderCar">
+                    <a href="viewOlderCar?id=<%= listOlderCars.get(i).getId() %>">
                         <img
                                 class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
                                 width="100%"

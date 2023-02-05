@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class OlderCar extends Car {
     private float mileage;
 
-    public void addOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float millage) {
+    public void addOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float mileage) {
         this.setName(name);
         this.setMark(mark);
         this.setPathImage(pathImage);
@@ -16,7 +16,7 @@ public class OlderCar extends Car {
         this.setDesc(desc);
         this.setYear(year);
         this.setValue(value);
-        this.setMileage(millage);
+        this.setMileage(mileage);
         this.setState("Disponivel");
         new OlderCarDAO().addCar(this);
     }
@@ -29,7 +29,7 @@ public class OlderCar extends Car {
         new OlderCarDAO().recoverOlderCar(this);
     }
 
-    public void editOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float millage) {
+    public void editOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float mileage, String state,String id) {
         this.setName(name);
         this.setMark(mark);
         this.setPathImage(pathImage);
@@ -37,8 +37,10 @@ public class OlderCar extends Car {
         this.setDesc(desc);
         this.setYear(year);
         this.setValue(value);
-        this.setMileage(millage);
-        this.setState("Disponivel");
+        this.setMileage(mileage);
+        this.setState(state);
+        this.setId(id);
+
         new OlderCarDAO().editCar(this);
     }
 

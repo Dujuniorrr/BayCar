@@ -15,6 +15,7 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8"/>
+    <link rel="icon" href="img/logo.png">
     <!--Importações do BOOTSTRAP-->
 
     <link rel="stylesheet" href="css/style.css">

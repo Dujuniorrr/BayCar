@@ -9,6 +9,7 @@
 <html lang="en">
 <head >
     <meta charset="UTF-8"/>
+    <link rel="icon" href="../img/logo.png">
     <!--Importações do BOOTSTRAP-->
 
     <link rel="stylesheet" href="../css/style.css">
@@ -95,15 +96,15 @@
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="value">Valor do Carro</label>
-                <input type="text" class="form-control border-form" name="value" id="value" placeholder="Digite o valor do carro." required>
+                <input type="text" maxlength="10" class="form-control border-form" name="value" id="value" placeholder="Digite o valor do carro." required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="year">Ano de Fabricação</label>
                 <input type="number"  min="1900" class="form-control" name="year" id="year" placeholder="Digite o ano de fabricação." required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
-                <label for="millage">Quilometragem</label>
-                <input type="text"  class="form-control" name="millage" id="millage" placeholder="Digite a kilometragem do carro." required>
+                <label for="mileage">Quilometragem</label>
+                <input type="text"  class="form-control" name="mileage" id="mileage" placeholder="Digite a kilometragem do carro." required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="imgPath">Imagem</label>
@@ -139,7 +140,7 @@
             v = v.replace(/(\d)(\d{3}),/g, "$1.$2,");
             e.target.value = v;
         }
-        const input2 = document.getElementById("millage");
+        const input2 = document.getElementById("mileage");
 
         input2.addEventListener("keyup", formatMoed);
 
