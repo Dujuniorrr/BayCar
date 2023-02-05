@@ -36,7 +36,11 @@
           </span>
     </div>
     <div class="flex-shrink-1 mt-4 d-flex justify-content-end col-md-6 col-12 pe-3">
-          <span>
+        <form class="d-flex m-auto col-8 mt-0 me-3" action="buscarFornecedorPorNome" name="campoBusca">
+            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="busca" required>
+            <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
+        </form>
+          <span class="col-2 mt-1">
             <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="logout.jsp">Logout</a>
           </span>
     </div>
@@ -59,6 +63,11 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="home" style="margin-left: 10px"
+                        >Home</a
+                        >
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-light" aria-current="page" href="dashboardCar" style="margin-left: 10px"
                         >Carros Novos</a
                         >
@@ -80,7 +89,7 @@
     </nav>
 
     <div class="row d-flex rounded">
-        <div class="d-inline-block p-2 col-md-12 m-auto bg-red roundend-3 mt-2"> <h3 class="text-light text-center">Carros Novos <a href="car/addCar.jsp"><button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-circle-plus"></i></button></a> </h3></div>
+        <div class="d-inline-block p-2 col-md-12 m-auto bg-red roundend-3 mt-2"> <h3 class="text-light text-center">Carros Novos  <a href="car/addCar.jsp"><button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-circle-plus"></i></button></a> </h3></div>
         <%if(listCars.isEmpty() == true){%>
              <div class="d-inline-block p-2  col-md-12 m-auto bg-red roundend-3 mb-2"> <h3 class="fs-3 text-light text-center">Não há carros disponiveis no momento!</h3></div>
         <%}else{%>
@@ -99,16 +108,18 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mt-2">
-                    <img
-                            class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
-                            width="100%"
-                            height="100%"
-                            src="imgCars/<%= listCars.get(i).getPathImage()%>"
-                    />
+                   <a href="viewCar?id=<%=listCars.get(i).getId()%>">
+                       <img
+                               class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
+                               width="100%"
+                               height="100%"
+                               src="imgCars/<%= listCars.get(i).getPathImage()%>"
+                       />
+                   </a>
                 </div>
 
                 <div class="d-flex col-md-8 col-12">
-                    <div class="card-body p-2 border-2 border-dark">
+                    <div class="card-body col-12 p-2 border-2 border-dark">
 
                         <div class="row">
                             <div class="col-6 justify-content-center">
@@ -140,8 +151,8 @@
         <div class="d-inline-block col-md-12 p-2 m-auto bg-red roundend-3 mt-2"> <h3 class="text-light text-center">Carros Usados <a href="olderCar/addOlderCar.jsp"><button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-circle-plus"></i></button></a> </h3> </div>
         <%if(listOlderCars.isEmpty() == true){%>
         <div class="d-inline-block p-2 mt-2 col-md-12 m-auto bg-red roundend-3 mb-2"> <h3 class="fs-3 text-light text-center">Não há carros disponiveis no momento!</h3></div>
-        <%}else{%>
-        <% for(int i = 0; i < listOlderCars.size(); i++){%>
+        <%}else{
+         for(int i = 0; i < listOlderCars.size(); i++){%>
         <div class="card mt-2 col-12 p-1 bg-red border-top-0 pt-0 border-2 border-dark mb-4" style="background-color: #444d55">
             <div class="row g-0 mt-2 bg-login">
                 <div class="mt-0 p-2 m-auto bg-red row">
@@ -164,16 +175,18 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mt-2">
-                    <img
-                            class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
-                            width="100%"
-                            height="100%"
-                            src="imgCars/<%= listOlderCars.get(i).getPathImage()%>"
-                    />
+                    <a href="viewOlderCar">
+                        <img
+                                class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
+                                width="100%"
+                                height="100%"
+                                src="imgCars/<%= listOlderCars.get(i).getPathImage()%>"
+                        />
+                    </a>
                 </div>
 
                 <div class="d-flex col-md-8 col-12">
-                    <div class="card-body p-2 border-2 border-dark">
+                    <div class="card-body col-12 p-2 border-2 border-dark">
 
                         <div class="row">
                             <div class="col-6 justify-content-center">

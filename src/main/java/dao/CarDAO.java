@@ -32,7 +32,7 @@ public class CarDAO {
 
     public void editCar(Car car){
         String sql = "UPDATE car SET name = ?, value_car = ?, year_car = ?, " +
-                "path_img = ? , description = ?, mark = ? , model = ? , state = ? WHERE id = ?";;
+                "path_img = ? , description = ?, mark = ?, model = ?, state = ? WHERE id = ?";
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pst = con.prepareStatement(sql);
@@ -45,6 +45,7 @@ public class CarDAO {
             pst.setString(7, car.getModel());
             pst.setString(8, car.getState());
             pst.setString(9, car.getId());
+            pst.executeUpdate();
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -57,7 +58,7 @@ public class CarDAO {
             Connection con = new DAO().conectar();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, id);
-            ResultSet rst = ps.executeQuery();
+            ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }

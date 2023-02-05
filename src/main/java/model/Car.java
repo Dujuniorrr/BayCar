@@ -19,8 +19,42 @@ public class Car {
 
     public Car(){}
 
+    public void addCar(String name, String mark, String pathImage, String model, String desc, int year, float value){
+        this.setName(name);
+        this.setMark(mark);
+        this.setPathImage(pathImage);
+        this.setModel(model);
+        this.setDesc(desc);
+        this.setYear(year);
+        this.setValue(value);
+        this.setState("Disponivel");
+        new CarDAO().addCar(this);
+    }
+
+    public void editCar(String id, String name, String mark, String pathImage, String model, String desc, int year, float value, String state){
+        this.setId(id);
+        this.setName(name);
+        this.setMark(mark);
+        this.setPathImage(pathImage);
+        this.setModel(model);
+        this.setDesc(desc);
+        this.setYear(year);
+        this.setValue(value);
+        this.setState(state);
+        new CarDAO().editCar(this);
+    }
+
+    public void deleteCar(String id){
+        new CarDAO().deleteCar(id);
+    }
+
     public ArrayList<Car> listCarDisponible(){
         return new CarDAO().listCarDisponible();
+    }
+
+    public void recoverCar(String id){
+        this.setId(id);
+        new CarDAO().recoverCar(this);
     }
 
     public ArrayList<Car> listCarSold(){

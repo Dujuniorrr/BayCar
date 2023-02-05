@@ -49,6 +49,7 @@ public class OlderCarDAO {
             pst.setString(8, olderCar.getState());
             pst.setFloat(9, olderCar.getMileage());
             pst.setString(10, olderCar.getId());
+            pst.executeUpdate();
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -61,7 +62,7 @@ public class OlderCarDAO {
             Connection con = new DAO().conectar();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, id);
-            ResultSet rst = ps.executeQuery();
+            ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }

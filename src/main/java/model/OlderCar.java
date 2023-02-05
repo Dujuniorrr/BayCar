@@ -19,6 +19,7 @@ public class OlderCar extends Car {
     public ArrayList<OlderCar> listOlderCarSold(){
         return new OlderCarDAO().listOlderCarSold();
     }
+
     public float getMileage() {
         return mileage;
     }

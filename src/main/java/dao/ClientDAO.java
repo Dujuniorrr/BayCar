@@ -37,6 +37,7 @@ public class ClientDAO {
             pst.setString(4, client.getAdress());
             pst.setString(5, client.getCpf());
             pst.setString(6, client.getId());
+            pst.executeUpdate();
             con.close();
         } catch (Exception e) {
             System.out.println(e);
@@ -50,7 +51,7 @@ public class ClientDAO {
             Connection con = new DAO().conectar();
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, id);
-            ResultSet rst = ps.executeQuery();
+            ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }

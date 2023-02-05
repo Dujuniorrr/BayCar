@@ -36,6 +36,7 @@ public class RentDAO {
             pst.setString(3,rent.getClient().getId());
             pst.setString(4, idOlderCar);
             pst.executeUpdate();
+            pst.executeQuery();
             con.close();
         } catch (Exception e) {
             System.out.println(e);
