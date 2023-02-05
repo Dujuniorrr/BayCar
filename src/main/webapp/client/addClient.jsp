@@ -107,7 +107,8 @@
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="desc"> Endereço do Cliente</label>
-                <textarea class="form-control" maxlength="30"  name="adress" id="desc" placeholder="Digite o endereço do Cliente." required style="max-height: 120px; height: 120px"> </textarea>
+                <input type="text" class="form-control" id="desc" name="desc" placeholder="Digite o endereço" maxlength="40" required>
+
             </div>
             <div class="col-sm-12 form-group mb-0 mt-3 flex d-flex justify-content-end">
                 <button class="btn btn-primary float-right">Adicionar</button>

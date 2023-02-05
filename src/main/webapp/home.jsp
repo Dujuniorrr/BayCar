@@ -205,11 +205,11 @@
                                 <div class=" text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Marca</span> <span class="d-block"><%= listOlderCars.get(i).getMark() %></span></div>
                             </div>
 
-                            <div >
+                            <div>
                                 <p class=" fw-bold col-md-12 text-light m-2  p-1" >Descrição</p>
-                                <div disabled style="height: 100px; max-height: 100px; min-height: 100px;"  class="h-80 d form-control col-md-12 text-light m-2  border border-light border-top-0 border-start-0 border-end-0 border-bottom-0">
-            descrição do carro
-                            </div>
+                                <div disabled style="height: 100px; max-height: 100px; min-height: 100px;" class="form-control m-2  border border-light">
+                                <%= listOlderCars.get(i).getDesc() %>
+                                </div>
                             </div>
                         </div>
 
