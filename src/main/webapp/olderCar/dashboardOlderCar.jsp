@@ -140,6 +140,7 @@
                             </div>
 
                             <div>
+
                                 <p class=" fw-bold col-md-12 text-light m-2 p-1" >Descrição</p>
                                 <div disabled style="height: 100px; max-height: 100px; min-height: 100px;" class="form-control m-2  border border-light">
                                     <%= listOlderCarsSolds.get(i).getDesc() %> </div>
