@@ -112,6 +112,7 @@
                                                 <th class="d-none d-md-table-cell col-3">Email</th>
                                                 <th class="d-none d-md-table-cell col-2">CPF</th>
                                                 <th class="col-1">Ver</th>
+                                                <th class="col-1">Deletar</th>
                                             </tr>
                                             </thead>
                                             <tbody >
@@ -124,6 +125,9 @@
                                                 <td class="text-light d-none d-md-table-cell"> <%= clients.get(i).getCpf()%></td>
                                                 <td>
                                                     <a href="viewClient?id=<%=clients.get(i).getId()%>"><button class="btn-lg p-1 pe-2 ps-2 me-2 fs-5 rounded-2"><i class="fa-sharp fa-solid fa-eye"></i></button></a>
+                                                </td>
+                                                <td>
+                                                    <a href="deleteClient?id=<%=clients.get(i).getId()%>"><button class="btn-lg p-1 pe-2 ps-2 me-2 fs-5 rounded-2"><i class="fa-sharp fa-solid fa-trash"></i></button></a>
                                                 </td>
                                             </tr>
                                         <% } %>
