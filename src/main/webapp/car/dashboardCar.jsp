@@ -41,7 +41,7 @@
             <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="busca" required>
             <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
-        <span class="col-3 col-md-2mt-1">
+        <span class="col-3 col-md-2 mt-1">
             <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="logout.jsp">Logout</a>
           </span>
     </div>
@@ -111,7 +111,7 @@
                 <div class="col-12 col-md-4 mt-2">
                     <a  href="viewCar?id=<%= listCarsSolds.get(i).getId()%>">
                         <img
-                                class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
+                                class="p-4 bg-dark card-img-top bg-dark border-top border-end border-start border-2 border-dark"
                                 width="100%"
                                 height="100%"
                                 src="imgCars/<%=listCarsSolds.get(i).getPathImage()%>"
@@ -120,8 +120,8 @@
                 </div>
 
                 <div class="d-flex col-md-8 col-12">
-                    <div class="card-body col-12 p-2 border-2 border-dark">
-
+                    <div class="card-body bg-dark col-12 p-2 border-2 border-dark">
+                        <div class="container">
                         <div class="row">
                             <div class="col-6 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Ano</span> <span class="d-block"><%= listCarsSolds.get(i).getYear()%></span></div>
@@ -142,7 +142,7 @@
                                     <%= listCarsSolds.get(i).getDesc() %> </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </div>

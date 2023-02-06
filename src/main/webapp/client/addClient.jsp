@@ -95,7 +95,7 @@
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="value">Email do Cliente</label>
-                <input type="text" maxlength="30"  class="form-control border-form" name="email" id="value" placeholder="exemplo@gmail.com" required>
+                <input type="email" maxlength="30"  class="form-control border-form" name="email" id="value" placeholder="exemplo@gmail.com" required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
                 <label for="phone">Telefone do Cliente</label>

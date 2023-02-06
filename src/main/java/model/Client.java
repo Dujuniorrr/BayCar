@@ -2,6 +2,8 @@ package model;
 
 import dao.ClientDAO;
 
+import java.util.ArrayList;
+
 public class Client {
     private String name;
     private String email;
@@ -20,14 +22,17 @@ public class Client {
         setAdress(adress);
         setPhone(phone);
         setCpf(cpf);
-
         new ClientDAO().addClient(this);
     }
 
+    public ArrayList<Client> listClients(){
+       return  new ClientDAO().listClient();
+    }
     public void recoverClient(String id){
         this.setId(id);
         new ClientDAO().recoverClient(this);
     }
+
     public void setName(String name) {
         this.name = name;
     }

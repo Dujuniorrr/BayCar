@@ -90,7 +90,7 @@ public class ClientDAO {
             PreparedStatement pstm = con.prepareStatement(sql);
             ResultSet rs = pstm.executeQuery();
 
-            if(rs.next()){
+            while(rs.next()){
                 Client cli = new Client();
                 cli.setName(rs.getString("name"));
                 cli.setEmail(rs.getString("email"));

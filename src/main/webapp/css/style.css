@@ -1,8 +1,19 @@
+
 body{
-    background-color: black;
-    background-image: url(../img/background.jpg);
     background-size: cover;
     min-width: 378px;
+    padding: 5px;
+}
+table{
+    border: none;
+}
+thead{
+    border-style: none;
+}
+.scroll{
+    max-height: 80%;
+    overflow-x: scroll;
+    scrollbar-width: 4px;
 }
 .bg-red{
     background-color: rgb(177, 13, 13);

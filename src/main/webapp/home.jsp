@@ -80,7 +80,7 @@
                     </li>
                     <li class="nav-item">
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="client/addClient.jsp" style="margin-left: 10px"
+                        <a class="nav-link text-light" aria-current="page" href="dashboardClient" style="margin-left: 10px"
                         >Clientes</a
                         >
                     </li>
@@ -95,7 +95,7 @@
              <div class="d-inline-block p-2  col-md-12 m-auto bg-red roundend-3 mb-2"> <h3 class="fs-3 text-light text-center">Não há carros disponiveis no momento!</h3></div>
         <%}else{%>
         <% for(int i = 0; i < listCars.size(); i++){%>
-        <div class="card mt-2 col-12 p-1 border-top-0 pt-0 border-2 border-dark mb-4" style="background-color: #444d55">
+        <div class=" card mt-2 col-12 p-1 border-top-0 pt-0 border-2 border-dark mb-4" style="background-color: #444d55">
             <div class="row g-0 mt-2 bg-login">
                 <div class="mt-0 p-2 m-auto bg-red row">
                     <div class="card-title d-flex m-auto col-4 fw-bold text-light" style="color: white; font-size: large;"><%= listCars.get(i).getName()%></div>
@@ -111,7 +111,7 @@
                 <div class="col-12 col-md-4 mt-2">
                    <a href="viewCar?id=<%=listCars.get(i).getId()%>">
                        <img
-                               class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
+                               class="card-img-top p-4 bg-dark border-top border-end border-start border-2 border-dark"
                                width="100%"
                                height="100%"
                                src="imgCars/<%= listCars.get(i).getPathImage()%>"
@@ -120,26 +120,27 @@
                 </div>
 
                 <div class="d-flex col-md-8 col-12">
-                    <div class="card-body col-12 p-2 border-2 border-dark">
+                    <div class="card-body bg-dark col-12 p-2 border-2 border-dark">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6 justify-content-center">
+                                    <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Ano</span> <span class="d-block"><%= listCars.get(i).getYear()%></span></div>
+                                </div>
+                                <div class="col-6 justify-content-center">
+                                    <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Marca</span> <span class="d-block"><%= listCars.get(i).getMark()%></span></div>
+                                </div>
+                                <div class="col-6 justify-content-center">
+                                    <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Modelo</span> <span class="d-block"><%= listCars.get(i).getModel()%></span></div>
+                                </div>
+                                <div class="col-6 justify-content-center col-2">
+                                    <div class=" text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Status</span> <span class="d-block"><%=listCars.get(i).getState()%></span></div>
+                                </div>
 
-                        <div class="row">
-                            <div class="col-6 justify-content-center">
-                                <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Ano</span> <span class="d-block"><%= listCars.get(i).getYear()%></span></div>
-                            </div>
-                            <div class="col-6 justify-content-center">
-                                <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Marca</span> <span class="d-block"><%= listCars.get(i).getMark()%></span></div>
-                            </div>
-                            <div class="col-6 justify-content-center">
-                                <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Modelo</span> <span class="d-block"><%= listCars.get(i).getModel()%></span></div>
-                            </div>
-                            <div class="col-6 justify-content-center col-2">
-                                <div class=" text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Status</span> <span class="d-block"><%=listCars.get(i).getState()%></span></div>
-                            </div>
-
-                            <div>
-                                <p class=" fw-bold col-md-12 text-light m-2  p-1" >Descrição</p>
-                                <div disabled style="height: 100px; max-height: 100px; min-height: 100px;" class="form-control m-2  border border-light">
-                                    <%= listCars.get(i).getDesc() %> </div>
+                                <div>
+                                    <p class=" fw-bold col-md-12 text-light m-2  p-1" >Descrição</p>
+                                    <div disabled style="height: 100px; max-height: 100px; min-height: 100px;" class="form-control m-2  border border-light">
+                                        <%= listCars.get(i).getDesc() %> </div>
+                                </div>
                             </div>
                         </div>
 
@@ -178,7 +179,7 @@
                 <div class="col-12 col-md-4 mt-2">
                     <a href="viewOlderCar?id=<%= listOlderCars.get(i).getId() %>">
                         <img
-                                class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
+                                class="card-img-top p-4 bg-dark bg-dark border-top border-end border-start border-2 border-dark"
                                 width="100%"
                                 height="100%"
                                 src="imgCars/<%= listOlderCars.get(i).getPathImage()%>"
@@ -188,7 +189,7 @@
 
                 <div class="d-flex col-md-8 col-12">
                     <div class="card-body col-12 p-2 border-2 border-dark">
-
+                        <div class="container">
                         <div class="row">
                             <div class="col-6 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Ano</span> <span class="d-block"><%= listOlderCars.get(i).getYear() %></span></div>
@@ -213,7 +214,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </div>

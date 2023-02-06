@@ -102,16 +102,16 @@
                     <div class="d-flex justify-content-start m-auto col-6" style="color: white; font-size: x-large;">R$ <%= listOlderCarsSolds.get(i).getValue()%></div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end m-auto">
-                            <a href="viewOlderCar">
+                            <a href="viewOlderCar?id=<%= listOlderCarsSolds.get(i).getId() %>">
                                 <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-sharp fa-solid fa-eye"></i></button>
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mt-2">
-                    <a>
+                    <a href="viewOlderCar?id=<%= listOlderCarsSolds.get(i).getId() %>">
                         <img
-                                class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
+                                class="p-4 card-img-top bg-dark border-top border-end border-start border-2 border-dark"
                                 width="100%"
                                 height="100%"
                                 src="imgCars/<%= listOlderCarsSolds.get(i).getPathImage() %>"
@@ -120,8 +120,8 @@
                 </div>
 
                 <div class="d-flex col-md-8 col-12">
-                    <div class="card-body col-12 p-2 border-2 border-dark">
-
+                    <div class="card-body bg-dark col-12 p-2 border-2 border-dark">
+                        <div class="container">
                         <div class="row">
                             <div class="col-6 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Ano</span> <span class="d-block"><%= listOlderCarsSolds.get(i).getYear()%></span></div>
@@ -145,7 +145,7 @@
                                     <%= listOlderCarsSolds.get(i).getDesc() %> </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
                                 <a>
                                     <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-right-left"></i></button>
                                 </a>
-                                <a>
+                                <a href="viewOlderCar?id=<%= listOlderCarsRented.get(i).getId() %>">
                                     <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-sharp fa-solid fa-eye"></i></button>
                                 </a>
 
@@ -177,9 +177,9 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mt-2">
-                    <a>
+                    <a href="viewOlderCar?id=<%= listOlderCarsRented.get(i).getId() %>">
                         <img
-                                class="card-img-top bg-dark border-top border-end border-start border-2 border-dark"
+                                class="p-4 card-img-top bg-dark border-top border-end border-start border-2 border-dark"
                                 width="100%"
                                 height="100%"
                                 src="imgCars/<%=listOlderCarsRented.get(i).getPathImage() %>"
@@ -188,8 +188,8 @@
                 </div>
 
                 <div class="d-flex col-md-8 col-12">
-                    <div class="card-body col-12 p-2 border-2 border-dark">
-
+                    <div class="card-body bg-dark col-12 p-2 border-2 border-dark">
+                        <div class="container">
                         <div class="row">
                             <div class="col-6 justify-content-center">
                                 <div class="text-center col-md-12 text-light m-2  p-1 border border-light border-top-0 border-start-0 border-end-0 border-bottom-2" style="font-size: large;"> <span class="d-block fw-bold">Ano</span> <span class="d-block"><%= listOlderCarsRented.get(i).getYear()%></span></div>
@@ -213,7 +213,7 @@
                                     <%= listOlderCarsRented.get(i).getDesc() %> </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
                 </div>
             </div>
