@@ -5,6 +5,10 @@ import java.sql.Date;
 public class Sale {
     private String id;
     private Date date;
+
+    private int parcel;
+
+    private float value;
     private Client client;
 
     public String getId() {
@@ -29,5 +33,21 @@ public class Sale {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public int getParcel() {
+        return parcel;
+    }
+
+    public void setParcel(int parcel) {
+        this.parcel = parcel;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
     }
 }
