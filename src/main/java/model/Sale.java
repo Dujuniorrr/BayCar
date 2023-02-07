@@ -3,6 +3,7 @@ package model;
 import dao.SaleDAO;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Sale {
     private String id;
@@ -34,6 +35,7 @@ public class Sale {
 //    public double calculateValue(float valueCar, int parcel){
 //
 //    }
+
     public void recoverSaleByCar(String idCar){
         new SaleDAO().recoverSaleByCar(this, idCar);
     }

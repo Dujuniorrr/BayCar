@@ -188,4 +188,42 @@ public class CarDAO {
         }
     }
 
+    public String recoverIdCarBySale(String id) {
+        String sql = "SELECT id_car FROM sale WHERE id = ?";
+
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setString(1, id);
+            ResultSet rs = pst.executeQuery();
+            String idCar = null;
+            if(rs.next())idCar = rs.getString(1);
+            con.close();
+            return idCar;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String recoverIdOlderCarBySale(String id) {
+        String sql = "SELECT id_older_car FROM sale WHERE id = ?";
+
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setString(1, id);
+
+            ResultSet rs = pst.executeQuery();
+            String idCar = null;
+            if(rs.next())idCar = rs.getString(1);
+            con.close();
+            return idCar;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

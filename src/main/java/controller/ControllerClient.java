@@ -1,9 +1,11 @@
 package controller;
 
 import dao.ClientDAO;
+import model.Car;
 import model.Client;
 import model.OlderCar;
 
+import model.Sale;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -31,36 +33,6 @@ public class ControllerClient extends HttpServlet {
 
     public ControllerClient() {
     }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // create an instance of the factory
-        FileItemFactory factory = new DiskFileItemFactory();
-
-        // create a new file upload handler
-        ServletFileUpload upload = new ServletFileUpload(factory);
-
-        try {
-            // Parse o request para obter uma lista de itens de arquivo
-            List<FileItem> items = upload.parseRequest(request);
-
-            // Iterar sobre cada item de arquivo
-            for (FileItem item : items) {
-                // Verifique se o item é um arquivo de upload
-                if (!item.isFormField()) {
-                    // Obtenha o nome do arquivo
-                    String fileName = item.getName();
-
-                    // Crie um objeto File para salvar o arquivo
-                    File file = new File("img/PerfilClient/" + fileName);
-
-                    // Salve o arquivo no disco
-                    item.write(file);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        response.sendRedirect("viewClient?id=1");
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
@@ -77,12 +49,11 @@ public class ControllerClient extends HttpServlet {
         }
     }
 
-    private void postImg(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
-
-    }
-
     private void viewClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         client.recoverClient(request.getParameter("id"));
+        ArrayList<Sale> sales = client.recoverSalesByClient();
+
+        request.setAttribute("sales", sales);
         request.setAttribute("client", client);
 
         RequestDispatcher rd = request.getRequestDispatcher("client/viewClient.jsp");

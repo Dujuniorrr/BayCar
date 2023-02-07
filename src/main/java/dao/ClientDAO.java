@@ -56,6 +56,11 @@ public class ClientDAO {
             System.out.println(e);
         }
     }
+
+    public void recoverCarClient(Client client) {
+
+    }
+
     public void recoverClient(Client client){
         String sql = "SELECT * FROM client WHERE id = ?";
 

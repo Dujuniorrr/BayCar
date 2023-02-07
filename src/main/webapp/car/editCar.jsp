@@ -125,6 +125,7 @@
             <div class="col-sm-12 form-group mb-0 mt-3 flex d-flex justify-content-end">
                 <button class="btn btn-primary float-right">Editar</button>
             </div>
+
         </div>
     </form>
     <script>

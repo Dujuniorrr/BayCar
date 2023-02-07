@@ -21,11 +21,6 @@ public class DAO{
     //private String password = "dfsj461910";
     private String password = "root";
 
-    /**
-     * Conectar.
-     *
-     * @return the connection
-     */
     public Connection conectar() {
         Connection con = null;
         try {

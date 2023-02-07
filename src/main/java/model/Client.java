@@ -1,6 +1,7 @@
 package model;
 
 import dao.ClientDAO;
+import dao.SaleDAO;
 
 import java.util.ArrayList;
 
@@ -78,5 +79,9 @@ public class Client {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public ArrayList<Sale> recoverSalesByClient() {
+        return new SaleDAO().recoverSalesByClient(getId());
     }
 }
