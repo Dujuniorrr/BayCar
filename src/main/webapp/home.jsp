@@ -102,7 +102,7 @@
                     <div class="d-flex justify-content-start m-auto col-5" style="color: white; font-size: x-large;">R$ <%= listCars.get(i).getValue()%></div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end m-auto">
-                            <a href="sale">
+                            <a href="saleCar?id=<%=listCars.get(i).getId()%>">
                                 <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-cart-shopping"></i></button>
                             </a>
                         </div>
@@ -152,7 +152,7 @@
         }%>
         <div class="d-inline-block col-md-12 p-2 m-auto bg-red roundend-3 mt-2"> <h3 class="text-light text-center">Carros Usados <a href="olderCar/addOlderCar.jsp"><button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-circle-plus"></i></button></a> </h3> </div>
         <%if(listOlderCars.isEmpty() == true){%>
-        <div class="d-inline-block p-2 mt-2 col-md-12 m-auto bg-red roundend-3 mb-2"> <h3 class="fs-3 text-light text-center">Não há carros disponiveis no momento!</h3></div>
+        <div class="d-inline-block p-2 col-md-12 m-auto bg-red roundend-3 mb-2"> <h3 class="fs-3 text-light text-center">Não há carros disponiveis no momento!</h3></div>
         <%}else{
          for(int i = 0; i < listOlderCars.size(); i++){%>
         <div class="card mt-2 col-12 p-1 bg-red border-top-0 pt-0 border-2 border-dark mb-4" style="background-color: #444d55">

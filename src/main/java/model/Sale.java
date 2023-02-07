@@ -1,5 +1,7 @@
 package model;
 
+import dao.SaleDAO;
+
 import java.sql.Date;
 
 public class Sale {
@@ -11,6 +13,21 @@ public class Sale {
     private float value;
     private Client client;
 
+    public void addSaleCar(Date date, int parcel, String idCar, Client client, float valueCar){
+        this.setDate(date);
+        this.setClient(client);
+        this.setParcel(parcel);
+//        float value = (float) calculateValue(valueCar, parcel);
+        this.setValue(value);
+        new SaleDAO().addSaleOfCar(this, idCar);
+    }
+
+//    public double calculateValue(float valueCar, int parcel){
+//
+//    }
+    public void recoverSaleByCar(String idCar){
+        new SaleDAO().recoverSaleByCar(this, idCar);
+    }
     public String getId() {
         return id;
     }

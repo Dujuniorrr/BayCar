@@ -11,13 +11,15 @@ import java.util.ArrayList;
 public class RentDAO {
 
     public void addRentOfOlderCar(Rent rent, String idOlderCar){
-        String sql = "INSERT INTO rent(date_rent, id_older_car, id_client) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO rent(date_rent, id_older_car, value_rent, parcel, id_client) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setDate(1, rent.getDate());
-            pst.setString(2, idOlderCar);
-            pst.setString(3,rent.getClient().getId());
+            pst.setFloat(2, rent.getValue());
+            pst.setInt(3, rent.getParcel());
+            pst.setString(4, idOlderCar);
+            pst.setString(5,rent.getClient().getId());
             pst.executeUpdate();
             con.close();
         } catch (Exception e) {
@@ -26,13 +28,12 @@ public class RentDAO {
     }
 
     public void editRentOfOlderCar(Rent rent, String idOlderCar){
-        String sql = "UPDATE rent SET date_rent = ?, date_devolution = ?, mileage =?, id_client =? WHERE id_older_car = ?";
+        String sql = "UPDATE rent SET date_rent = ?, parcel = ?, id_client =? WHERE id_older_car = ?";
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setDate(1, rent.getDate());
-            pst.setDate(2, rent.getDateDevolution());
-            pst.setFloat(1, rent.getMileage());
+            pst.setInt(2, rent.getParcel());
             pst.setString(3,rent.getClient().getId());
             pst.setString(4, idOlderCar);
             pst.executeUpdate();
@@ -54,6 +55,8 @@ public class RentDAO {
             if(rs.next()) {
                 rent.setDate(rs.getDate("date_rent"));
                 rent.setDateDevolution(rs.getDate("date_devolution"));
+                rent.setParcel(rs.getInt("parcel"));
+                rent.setValue(rs.getFloat("value_rent"));
                 rent.setMileage(rs.getFloat("mileage"));
                 Client client = new Client();
                 client.recoverClient(rs.getString("id_client"));
@@ -80,6 +83,8 @@ public class RentDAO {
                 rent.setId(rs.getString("id"));
                 rent.setDate(rs.getDate("date_rent"));
                 rent.setDateDevolution(rs.getDate("date_devolution"));
+                rent.setParcel(rs.getInt("parcel"));
+                rent.setValue(rs.getFloat("value_rent"));
                 rent.setMileage(rs.getFloat("mileage"));
                 Client client = new Client();
                 client.recoverClient(rs.getString("id_client"));

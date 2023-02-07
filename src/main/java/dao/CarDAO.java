@@ -84,6 +84,9 @@ public class CarDAO {
                 car.setModel(rs.getString("model"));
                 car.setState(rs.getString("state"));
             }
+            Sale sale = new Sale();
+            sale.recoverSaleByCar(car.getId());
+            car.setSale(sale);
             con.close();
         } catch(Exception e) {
             e.printStackTrace();

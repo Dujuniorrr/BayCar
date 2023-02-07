@@ -109,6 +109,10 @@ public class SaleDAO {
             pst.setInt(4, sale.getParcel());
             pst.setString(5, sale.getClient().getId());
             pst.executeUpdate();
+            sql = "UPDATE car SET state = 'Vendido' WHERE id = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, idCar);
+            pst.executeUpdate();
             con.close();
         } catch (Exception e) {
             System.out.println(e);

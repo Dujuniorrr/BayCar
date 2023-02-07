@@ -2,6 +2,7 @@ package controller;
 
 import model.Car;
 import model.OlderCar;
+import model.Sale;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class ControllerCar extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private boolean login = false;
     public Car car = new Car();
+    public Sale sale = new Sale();
 
     public ControllerCar() {
     }
