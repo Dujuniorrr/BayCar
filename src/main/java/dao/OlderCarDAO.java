@@ -2,6 +2,7 @@ package dao;
 
 import model.Car;
 import model.OlderCar;
+import model.Sale;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -87,6 +88,9 @@ public class OlderCarDAO {
                 olderCar.setModel(rs.getString("model"));
                 olderCar.setMileage(rs.getFloat("mileage"));
                 olderCar.setState(rs.getString("state"));
+                Sale sale = new Sale();
+                sale.recoverSaleByOlderCar(olderCar.getId());
+                olderCar.setSale(sale);
             }
             con.close();
         } catch(Exception e) {

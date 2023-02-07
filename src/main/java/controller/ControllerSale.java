@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ControllerSale extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    OlderCar olderCar = new OlderCar();
     Car car = new Car();
     Client client = new Client();
     Sale sale = new Sale();
@@ -32,7 +33,22 @@ public class ControllerSale extends HttpServlet {
             saleCar(request, response);
         } else if(action.equals("/addSaleCar")) {
             addSaleCar(request, response);
+        } else if(action.equals("/saleOlderCar")) {
+            saleOlderCar(request, response);
+        } else if(action.equals("/addSaleOlderCar")) {
+            addSaleOlderCar(request, response);
         }
+    }
+
+    public void saleOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        olderCar.recoverOlderCar(request.getParameter("id"));
+        ArrayList<Client> clients = client.listClients();
+
+        request.setAttribute("car", olderCar);
+        request.setAttribute("clients", clients);
+
+        RequestDispatcher rd = request.getRequestDispatcher("sale/addSale.jsp");
+        rd.forward(request, response);
     }
 
     public void saleCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,6 +67,16 @@ public class ControllerSale extends HttpServlet {
         float valueCar = Float.parseFloat(request.getParameter("value"));
         int parcel = Integer.parseInt(request.getParameter("parcel"));
         sale.addSaleCar(date, parcel, idCar, client, valueCar);
+        response.sendRedirect("home");
+    }
+
+    public void addSaleOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String idCar = request.getParameter("car");
+        client.recoverClient(request.getParameter("client"));
+        Date date = Date.valueOf(request.getParameter("date"));
+        float valueCar = Float.parseFloat(request.getParameter("value"));
+        int parcel = Integer.parseInt(request.getParameter("parcel"));
+        sale.addSaleOlderCar(date, parcel, idCar, client, valueCar);
         response.sendRedirect("home");
     }
 }

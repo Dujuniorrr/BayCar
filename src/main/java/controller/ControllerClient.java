@@ -4,8 +4,16 @@ import dao.ClientDAO;
 import model.Client;
 import model.OlderCar;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +22,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/addClient", "/dashboardClient", "/deleteClient", "/viewClient"})
+@WebServlet(urlPatterns = {"/addClient", "/dashboardClient", "/deleteClient", "/viewClient", "/postImg"})
 public class ControllerClient extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -22,6 +30,36 @@ public class ControllerClient extends HttpServlet {
     Client client = new Client();
 
     public ControllerClient() {
+    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // create an instance of the factory
+        FileItemFactory factory = new DiskFileItemFactory();
+
+        // create a new file upload handler
+        ServletFileUpload upload = new ServletFileUpload(factory);
+
+        try {
+            // Parse o request para obter uma lista de itens de arquivo
+            List<FileItem> items = upload.parseRequest(request);
+
+            // Iterar sobre cada item de arquivo
+            for (FileItem item : items) {
+                // Verifique se o item é um arquivo de upload
+                if (!item.isFormField()) {
+                    // Obtenha o nome do arquivo
+                    String fileName = item.getName();
+
+                    // Crie um objeto File para salvar o arquivo
+                    File file = new File("img/PerfilClient/" + fileName);
+
+                    // Salve o arquivo no disco
+                    item.write(file);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        response.sendRedirect("viewClient?id=1");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,6 +75,10 @@ public class ControllerClient extends HttpServlet {
         } else {
             response.sendRedirect("home.jsp");
         }
+    }
+
+    private void postImg(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+
     }
 
     private void viewClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {

@@ -11,6 +11,9 @@
     <title>View Client</title>
 </head>
 <body>
-    <a href="home">home</a>
+    <form class="bg-dark" action="postImg" method="post" enctype="multipart/form-data">
+        <input type="file">
+        <input type="submit">
+    </form>
 </body>
 </html>

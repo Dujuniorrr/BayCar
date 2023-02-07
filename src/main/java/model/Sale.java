@@ -22,12 +22,26 @@ public class Sale {
         new SaleDAO().addSaleOfCar(this, idCar);
     }
 
+    public void addSaleOlderCar(Date date, int parcel, String idCar, Client client, float valueCar){
+        this.setDate(date);
+        this.setClient(client);
+        this.setParcel(parcel);
+//        float value = (float) calculateValue(valueCar, parcel);
+        this.setValue(value);
+        new SaleDAO().addSaleOfOlderCar(this, idCar);
+    }
+
 //    public double calculateValue(float valueCar, int parcel){
 //
 //    }
     public void recoverSaleByCar(String idCar){
         new SaleDAO().recoverSaleByCar(this, idCar);
     }
+
+    public void recoverSaleByOlderCar(String idCar){
+        new SaleDAO().recoverSaleByOlderCar(this, idCar);
+    }
+
     public String getId() {
         return id;
     }

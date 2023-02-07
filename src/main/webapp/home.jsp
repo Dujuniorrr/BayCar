@@ -163,11 +163,10 @@
                     <div class="col-3">
                         <div class="d-flex justify-content-end m-auto">
 
-                            <a href="sale">
+                            <a href="saleOlderCar?id=<%= listOlderCars.get(i).getId() %>">
                                 <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-cart-shopping"></i></button>
                             </a>
-
-                            <a href="rent">
+                            <a href="rent?id=<%= listOlderCars.get(i).getId() %>">
                                 <button class="btn-lg p-1 fs-4 pe-2 ps-2 rounded-2"><i class="fa-solid fa-key"></i></button>
                             </a>
 

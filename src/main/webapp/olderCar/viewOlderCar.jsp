@@ -129,11 +129,28 @@
                     <label for="mileage"> Quilometragem </label>
                     <input type="mileage" readonly class="form-control" name="mileage" id="mileage" placeholder="Digite o modelo." value="<%= car.getMileage() %>" required>
                 </div>
+                <% if(car.getSale() != null ){%>
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="nameCliente"> Nome do Cliente </label>
+                    <input type="text" readonly class="form-control" name="nameCliente" id="nameCliente"  value="<%= car.getSale().getClient().getName() %>" required>
+                </div>
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="date"> Data da Venda </label>
+                    <input type="text" readonly class="form-control" name="model" id="date" placeholder="Digite a data da venda." value="<%= car.getSale().getDate() %>" required>
+                </div>
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="parcel"> Quantidade de parcela </label>
+                    <input type="text" readonly class="form-control" name="parcel" id="parcel" placeholder="Digite a quantidade de parcela" value="<%= car.getSale().getParcel() %>" required>
+                </div>
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="valueSale"> Valor da Venda </label>
+                    <input type="text" readonly class="form-control" name="valueSale" id="valueSale"  value="<%= car.getSale().getValue() %>" required>
+                </div>
+                <% }%>
                 <div class="col-sm-6 form-group text-light mt-3">
                     <label for="desc"> Descrição</label>
                     <textarea class="form-control"  readonly name="desc" id="desc" placeholder="Digite a descrição." required style="max-height: 120px; height: 120px"><%= car.getDesc() %> </textarea>
                 </div>
-
             </div>
         </div>
     </div>

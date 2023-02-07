@@ -2,6 +2,7 @@
 <%@ page import="model.Car" %>
 <%@ page import="model.Client" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.OlderCar" %>
 <%
     String manager = (String) session.getAttribute("manager");
     if(manager == null){
@@ -89,7 +90,11 @@
             </div>
         </div>
     </nav>
+    <% if(request.getAttribute("car").getClass().toString().equals("class model.OlderCar")){%>
+    <form class="bg-dark" action="addSaleOlderCar">
+    <%} else {%>
     <form class="bg-dark" action="addSaleCar">
+    <%}%>
         <div class="row jumbotron box8 p-4 border-form m-0">
             <div class="col-sm-12 mx-t3 mb-4">
                 <div class="col-10 col-md-6 m-auto bg-red-gradient p-1 rounded-2">
@@ -121,6 +126,13 @@
                     <label for="mark"> Marca </label>
                     <input type="text" readonly class="form-control" name="mark" id="mark" placeholder="Digite a marca." value="<%= car.getMark() %>" required>
                 </div>
+                <% if(request.getAttribute("car").getClass().toString().equals("class model.OlderCar")){
+                    OlderCar car1 = (OlderCar) request.getAttribute("car");%>
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="mileage"> Quilometragem </label>
+                    <input type="text" readonly class="form-control" name="mileage" id="mileage" placeholder="Digite a marca." value="<%= car1.getMileage() %>" required>
+                </div>
+                <%}%>
              </div>
 
             <div class="col-sm-6 form-group text-light mt-3">

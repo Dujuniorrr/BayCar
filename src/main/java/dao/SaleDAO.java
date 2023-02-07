@@ -12,10 +12,14 @@ import java.util.ArrayList;
 public class SaleDAO {
 
     public void addSaleOfOlderCar(Sale sale, String idOlderCar){
+        String sql1 = "UPDATE older_car SET state = 'Vendido' WHERE id = ?";
         String sql = "INSERT INTO sale(date_sale, id_older_car, value_sale, parcel, id_client) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection con = new DAO().conectar();
-            PreparedStatement pst = con.prepareStatement(sql);
+            PreparedStatement pst = con.prepareStatement(sql1);
+            pst.setString(1, idOlderCar);
+            pst.executeUpdate();
+            pst = con.prepareStatement(sql);
             pst.setDate(1, sale.getDate());
             pst.setString(2, idOlderCar);
             pst.setFloat(3, sale.getValue());
