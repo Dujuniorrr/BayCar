@@ -39,6 +39,8 @@ public class Controller extends HttpServlet {
     public void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ArrayList<Car> cars = car.listCarDisponible();
         ArrayList<OlderCar> olderCars = olderCar.listOlderCarDisponible();
+
+        request.setAttribute("search", "");
         request.setAttribute("cars", cars);
         request.setAttribute("olderCars", olderCars);
         RequestDispatcher rd = request.getRequestDispatcher("home.jsp");

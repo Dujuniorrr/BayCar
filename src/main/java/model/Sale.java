@@ -40,6 +40,10 @@ public class Sale {
         new SaleDAO().recoverSaleByCar(this, idCar);
     }
 
+    public ArrayList<Sale> recoverSalesByClient(String idClient) {
+        return new SaleDAO().recoverSalesByClient(idClient);
+    }
+
     public void recoverSaleByOlderCar(String idCar){
         new SaleDAO().recoverSaleByOlderCar(this, idCar);
     }

@@ -37,7 +37,7 @@
             <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
         <span class="col-3 col-md-2 mt-1">
-            <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="logout.jsp">Logout</a>
+            <a class="text-red p-2 col-4 border border-1 border-red rounded-pill" href="../logout.jsp">Logout</a>
           </span>
     </div>
 </div>

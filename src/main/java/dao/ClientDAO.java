@@ -1,6 +1,9 @@
 package dao;
 
 import model.Client;
+import model.OlderCar;
+import model.Rent;
+import model.Sale;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +30,7 @@ public class ClientDAO {
     }
 
     public void editClient(Client client){
-        String sql = "UPDATE client SET name = ?, email = ?, phone = ?, adress = ?, cpf = ? WHERE id = ?";;
+        String sql = "UPDATE client SET name = ?, email = ?, phone = ?, adress = ?, cpf = ? WHERE id = ?";
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pst = con.prepareStatement(sql);
@@ -45,11 +48,35 @@ public class ClientDAO {
     }
 
     public void deleteClient(String id){
-        //me lembra de te falar uma coisa sobre esse metódo antes dele ser utilizado, é importante
+        ArrayList<Sale> sales = new SaleDAO().recoverSalesByClient(id);
+        ArrayList<Rent> rents = new RentDAO().recoverRentsByClient(id);
         String sql = "DELETE FROM client WHERE id = ?";
         try {
             Connection con = new DAO().conectar();
-            PreparedStatement ps = con.prepareStatement(sql);
+            String select = "SELECT * FROM sale WHERE id = ?";
+            PreparedStatement ps = con.prepareStatement(select);
+            for(int i = 0; i < sales.size(); i++){
+                ps.setString(1, sales.get(i).getId());
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()){
+                    new CarDAO().deleteCar(rs.getString("id_car"));
+                    new OlderCarDAO().deleteCar(rs.getString("id_older_car"));
+                }
+            }
+            select = "SELECT * FROM rent WHERE id = ?";
+            ps = con.prepareStatement(select);
+            for(int i = 0; i < rents.size(); i++){
+                ps.setString(1, rents.get(i).getId());
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()){
+                    if(rs.getDate("date_devolution") == null) {
+                        OlderCar car = new OlderCar();
+                        car.recoverOlderCar(rs.getString("id_older_car"));
+                        new RentDAO().finalizeRent(car);
+                    }
+                }
+            }
+            ps = con.prepareStatement(sql);
             ps.setString(1, id);
             ps.executeUpdate();
         } catch (Exception e) {

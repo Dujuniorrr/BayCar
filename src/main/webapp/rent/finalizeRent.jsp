@@ -1,15 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="model.Car" %>
-<%@ page import="model.Client" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="model.OlderCar" %>
+
 <%
     String manager = (String) session.getAttribute("manager");
     if(manager == null){
         response.sendRedirect("login.jsp");
     }
-    Car car = (Car) request.getAttribute("car");
-    ArrayList<Client> listClients = (ArrayList<Client>) request.getAttribute("clients");
+    OlderCar car = (OlderCar) request.getAttribute("car");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,8 +36,8 @@
           </span>
     </div>
     <div class="flex-shrink-1 mt-4 d-flex justify-content-end col-md-6 col-12 pe-3">
-        <form class="d-flex m-auto col-8 mt-0 me-3" action="buscarFornecedorPorNome" name="campoBusca">
-            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="busca" required>
+        <form class="d-flex m-auto col-8 mt-0 me-3" action="searchCar" name="campoBusca">
+            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="searchCamp" required>
             <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
         <span class="col-3 col-md-2 mt-1">
@@ -89,16 +86,12 @@
                 </ul>
             </div>
         </div>
-    </nav>
-    <% if(request.getAttribute("car").getClass().toString().equals("class model.OlderCar")){%>
-    <form class="bg-dark" action="addSaleOlderCar">
-    <%} else {%>
-    <form class="bg-dark" action="addSaleCar">
-    <%}%>
+    </nav>%>
+    <form class="bg-dark" action="finalizeRent">
         <div class="row jumbotron box8 p-4 border-form m-0">
             <div class="col-sm-12 mx-t3 mb-4">
                 <div class="col-10 col-md-6 m-auto bg-red-gradient p-1 rounded-2">
-                    <h2 class="text-center text-light"> Adicionar Venda</h2>
+                    <h2 class="text-center text-light"> Devolução do Carro</h2>
                 </div>
             </div>
             <div class="col-md-4 col-12 h-100">
@@ -126,30 +119,27 @@
                     <label for="mark"> Marca </label>
                     <input type="text" readonly class="form-control" name="mark" id="mark" placeholder="Digite a marca." value="<%= car.getMark() %>" required>
                 </div>
-                <% if(request.getAttribute("car").getClass().toString().equals("class model.OlderCar")){
-                    OlderCar car1 = (OlderCar) request.getAttribute("car");%>
+
                 <div class="col-sm-6 form-group text-light mt-3">
                     <label for="mileage"> Quilometragem </label>
-                    <input type="text" readonly class="form-control" name="mileage" id="mileage" placeholder="Digite a marca." value="<%= car1.getMileage() %>" required>
+                    <input type="text" readonly class="form-control" name="mileage" id="mileage" placeholder="Digite a marca." value="<%= car.getMileage() %>" required>
                 </div>
-                <%}%>
-             </div>
 
-            <div class="col-sm-6 form-group text-light mt-3">
-                <label for="client">Cliente</label>
-                <select   class="form-control" name="client" id="client">
-                    <%for (int i = 0; i < listClients.size(); i++){%>
-                    <option value="<%=listClients.get(i).getId() %>">
-                        <%= listClients.get(i).getName() %>
-                    </option>
-                    <% } %>
-                </select>
-            </div>
-            <div class="col-sm-6 form-group text-light mt-3">
-                <label for="parcel">Quantidade De Parcelas</label>
-                <input type="number" min="0" max="36"  class="form-control" name="parcel" id="parcel" placeholder="Digite a quantidade de parcelas." required>
-            </div>
-            <div id="form" class="col-sm-6 form-group text-light mt-3">
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="client"> Nome do Cliente </label>
+                    <input class="d-none" name="idClient" value="<%= car.getRent().getClient().getId()%>">
+                    <input type="text" readonly class="form-control" name="client" id="client" placeholder="Digite a marca." value="<%= car.getRent().getClient().getName() %>" required>
+                </div>
+
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="parcel">Quantidade De Parcelas</label>
+                    <input type="number" min="0" max="36"  class="form-control" name="parcel" id="parcel" placeholder="Digite a quantidade de parcelas." required>
+                </div>
+
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="mileageRent">Quilometragem Rodada</label>
+                    <input type="text" class="form-control border-form" name="mileageRent" id="mileageRent" placeholder="Digite quantos km foram rodados." required>
+                </div>
 
             </div>
 
@@ -159,6 +149,8 @@
         </div>
     </form>
     <script>
+        const input = document.getElementById("mileageRent");
+
         input.addEventListener("keyup", formatMoed);
 
         function formatMoed(e) {

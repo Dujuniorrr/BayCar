@@ -1,11 +1,8 @@
 package controller;
 
 import dao.ClientDAO;
-import model.Car;
-import model.Client;
-import model.OlderCar;
+import model.*;
 
-import model.Sale;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -30,8 +27,10 @@ public class ControllerClient extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     Client client = new Client();
+    Sale sale = new Sale();
+    Rent rent = new Rent();
 
-    public ControllerClient() {
+    public ControllerClient(){
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -44,16 +43,21 @@ public class ControllerClient extends HttpServlet {
             deleteClient(response, request);
         } else if (action.equals("/viewClient")) {
             viewClient(response, request);
-        } else {
-            response.sendRedirect("home.jsp");
+        } else if (action.equals("/searchClient")) {
+            searchClient(response, request);
+        } else if (action.equals("/selectClient")) {
+            selectClient(response ,request);
+        } else if (action.equals("/editClient")) {
+            editClient(response ,request);
         }
     }
 
     private void viewClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
         client.recoverClient(request.getParameter("id"));
-        ArrayList<Sale> sales = client.recoverSalesByClient();
-
+        ArrayList<Sale> sales = sale.recoverSalesByClient(client.getId());
+        ArrayList<Rent> rents = rent.recoverRentByClient(client.getId());
         request.setAttribute("sales", sales);
+        request.setAttribute("rents", rents);
         request.setAttribute("client", client);
 
         RequestDispatcher rd = request.getRequestDispatcher("client/viewClient.jsp");
@@ -61,7 +65,7 @@ public class ControllerClient extends HttpServlet {
     }
 
     private void deleteClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
-        new ClientDAO().deleteClient(request.getParameter("id"));
+        client.deleteClient(request.getParameter("id"));
 
         response.sendRedirect("dashboardClient");
     }
@@ -84,6 +88,26 @@ public class ControllerClient extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher("client/dashboardClient.jsp");
         rd.forward(request, response);
+    }
+
+    private void selectClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        client.recoverClient(request.getParameter("id"));
+        request.setAttribute("client", client);
+        RequestDispatcher rd = request.getRequestDispatcher("client/editClient.jsp");
+        rd.forward(request, response);
+    }
+
+    private void editClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String adress = request.getParameter("adress");
+        String phone = request.getParameter("phone");
+        String cpf = request.getParameter("cpf");
+
+        client.editClient(id, name, email, adress, phone, cpf);
+
+        response.sendRedirect("viewClient?id="+id);
     }
 }
 

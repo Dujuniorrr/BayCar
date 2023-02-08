@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="model.Car" %>
+<%@ page import="model.OlderCar" %>
 <%@ page import="model.Client" %>
 <%@ page import="java.util.ArrayList" %>
 <%
@@ -7,7 +8,7 @@
     if(manager == null){
         response.sendRedirect("login.jsp");
     }
-    Car car = (Car) request.getAttribute("car");
+    OlderCar car = (OlderCar) request.getAttribute("car");
     ArrayList<Client> listClients = (ArrayList<Client>) request.getAttribute("clients");
 %>
 <!DOCTYPE html>

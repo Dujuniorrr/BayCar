@@ -129,7 +129,7 @@
                     <label for="mileage"> Quilometragem </label>
                     <input type="mileage" readonly class="form-control" name="mileage" id="mileage" placeholder="Digite o modelo." value="<%= car.getMileage() %>" required>
                 </div>
-                <% if(car.getSale() != null ){%>
+                <% if(car.getSale().getId() != null ){%>
                 <div class="col-sm-6 form-group text-light mt-3">
                     <label for="nameCliente"> Nome do Cliente </label>
                     <input type="text" readonly class="form-control" name="nameCliente" id="nameCliente"  value="<%= car.getSale().getClient().getName() %>" required>

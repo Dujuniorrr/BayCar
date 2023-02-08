@@ -106,8 +106,8 @@
                 <input type="text" class="form-control" id="cpf" name="cpf" placeholder="999.999.999-99" minlength="14" maxlength="14" required>
             </div>
             <div class="col-sm-6 form-group text-light mt-3">
-                <label for="desc"> Endereço do Cliente</label>
-                <input type="text" class="form-control" id="desc" name="desc" placeholder="Digite o endereço" maxlength="40" required>
+                <label for="adress"> Endereço do Cliente</label>
+                <input type="text" class="form-control" id="adress" name="adress" placeholder="Digite o endereço" maxlength="40" required>
             </div>
             <div class="col-sm-12 form-group mb-0 mt-3 flex d-flex justify-content-end">
                 <button class="btn btn-primary float-right">Adicionar</button>

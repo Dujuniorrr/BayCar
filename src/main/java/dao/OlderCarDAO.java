@@ -2,6 +2,7 @@ package dao;
 
 import model.Car;
 import model.OlderCar;
+import model.Rent;
 import model.Sale;
 
 import java.sql.Connection;
@@ -91,6 +92,9 @@ public class OlderCarDAO {
                 Sale sale = new Sale();
                 sale.recoverSaleByOlderCar(olderCar.getId());
                 olderCar.setSale(sale);
+                Rent rent = new Rent();
+                rent.recoverRentActualByOlderCar(olderCar.getId());
+                olderCar.setRent(rent);
             }
             con.close();
         } catch(Exception e) {
@@ -191,6 +195,45 @@ public class OlderCarDAO {
         }
     }
 
+    public String recoverIdOlderCarBySale(String id) {
+        String sql = "SELECT id_older_car FROM sale WHERE id = ?";
+
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setString(1, id);
+
+            ResultSet rs = pst.executeQuery();
+            String idCar = null;
+            if(rs.next())idCar = rs.getString(1);
+            con.close();
+            return idCar;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String recoverIdOlderCarByRent(String id) {
+        String sql = "SELECT id_older_car FROM rent WHERE id = ?";
+
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setString(1, id);
+
+            ResultSet rs = pst.executeQuery();
+            String idCar = null;
+            if(rs.next())idCar = rs.getString(1);
+            con.close();
+            return idCar;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public ArrayList<OlderCar> listOlderCarDisponible(){
         ArrayList<OlderCar> olderCars = new ArrayList<OlderCar>();

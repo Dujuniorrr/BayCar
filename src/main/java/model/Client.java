@@ -26,12 +26,26 @@ public class Client {
         new ClientDAO().addClient(this);
     }
 
+    public void editClient(String id, String name, String email, String adress, String phone, String cpf){
+        setId(id);
+        setName(name);
+        setEmail(email);
+        setAdress(adress);
+        setPhone(phone);
+        setCpf(cpf);
+        new ClientDAO().editClient(this);
+    }
+
     public ArrayList<Client> listClients(){
        return  new ClientDAO().listClient();
     }
     public void recoverClient(String id){
         this.setId(id);
         new ClientDAO().recoverClient(this);
+    }
+
+    public void deleteClient(String id){
+        new ClientDAO().deleteClient(id);
     }
 
     public void setName(String name) {
@@ -79,9 +93,5 @@ public class Client {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public ArrayList<Sale> recoverSalesByClient() {
-        return new SaleDAO().recoverSalesByClient(getId());
     }
 }

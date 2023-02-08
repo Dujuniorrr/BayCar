@@ -18,8 +18,8 @@ public class DAO{
     private String user = "root";
 
     /** The password. */
-    //private String password = "dfsj461910";
-    private String password = "root";
+    private String password = "dfsj461910";
+//    private String password = "root";
 
     public Connection conectar() {
         Connection con = null;

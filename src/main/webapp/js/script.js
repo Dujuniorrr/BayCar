@@ -11,3 +11,4 @@ function deleteOlderCar(id){
         window.location.href = "deleteOlderCar?id=" + id
     }
 }
+

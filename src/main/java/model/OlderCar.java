@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class OlderCar extends Car {
     private float mileage;
+    private Rent rent;
 
     public void addOlderCar(String name, String mark, String pathImage, String model, String desc, int year, float value, float mileage) {
         this.setName(name);
@@ -62,5 +63,13 @@ public class OlderCar extends Car {
 
     public void setMileage(float mileage) {
         this.mileage = mileage;
+    }
+
+    public Rent getRent() {
+        return rent;
+    }
+
+    public void setRent(Rent rent) {
+        this.rent = rent;
     }
 }

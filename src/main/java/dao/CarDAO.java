@@ -207,23 +207,34 @@ public class CarDAO {
         return null;
     }
 
-    public String recoverIdOlderCarBySale(String id) {
-        String sql = "SELECT id_older_car FROM sale WHERE id = ?";
-
+    public ArrayList<Car> listCarSearch(String searchCamp) {
+        String sql = "SELECT * FROM car WHERE name LIKE ?;";
+        ArrayList<Car> cars = new ArrayList<Car>();
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pst = con.prepareStatement(sql);
 
-            pst.setString(1, id);
-
             ResultSet rs = pst.executeQuery();
-            String idCar = null;
-            if(rs.next())idCar = rs.getString(1);
+
+            while(rs.next()){
+                Car car = new Car();
+                car.setName(rs.getString("name"));
+                car.setYear(rs.getInt("year_car"));
+                car.setId(rs.getString("id"));
+                car.setValue(rs.getFloat("value_car"));
+                car.setPathImage(rs.getString("path_img"));
+                car.setDesc(rs.getString("description"));
+                car.setMark(rs.getString("mark"));
+                car.setModel(rs.getString("model"));
+                car.setState(rs.getString("state"));
+
+                cars.add(car);
+            }
             con.close();
-            return idCar;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        System.out.println(cars.size());
+        return cars;
     }
 }

@@ -165,8 +165,8 @@
                     <div class="d-flex justify-content-start m-auto col-6" style="color: white; font-size: x-large;">R$ <%= listOlderCarsRented.get(i).getValue()%></div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end m-auto">
-                            <a href="sale">
-                                <a>
+                            <a>
+                                <a href="finalizeRentForm?id=<%= listOlderCarsRented.get(i).getId() %>">
                                     <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-right-left"></i></button>
                                 </a>
                                 <a href="viewOlderCar?id=<%= listOlderCarsRented.get(i).getId() %>">
