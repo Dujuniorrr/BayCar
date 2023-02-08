@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/addClient", "/dashboardClient", "/deleteClient", "/viewClient", "/postImg"})
+@WebServlet(urlPatterns = {"/searchClient", "/addClient", "/dashboardClient", "/deleteClient", "/viewClient","/selectClient", "/editClient"})
 public class ControllerClient extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -50,6 +50,14 @@ public class ControllerClient extends HttpServlet {
         } else if (action.equals("/editClient")) {
             editClient(response ,request);
         }
+    }
+
+    private void searchClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+        ArrayList<Client> clients = client.listClientsSearch(request.getParameter("searchCamp"));
+        request.setAttribute("clients", clients);
+
+        RequestDispatcher rd = request.getRequestDispatcher("client/dashboardClient.jsp");
+        rd.forward(request, response);
     }
 
     private void viewClient(HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {

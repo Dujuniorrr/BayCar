@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="model.OlderCar" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%
     String manager = (String) session.getAttribute("manager");
     if(manager == null){
@@ -34,8 +36,8 @@
           </span>
     </div>
     <div class="flex-shrink-1 mt-4 d-flex justify-content-end col-md-6 col-12 pe-3">
-        <form class="d-flex m-auto col-8 mt-0 me-3" action="buscarFornecedorPorNome" name="campoBusca">
-            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="busca" required>
+        <form class="d-flex m-auto col-8 mt-0 me-3" action="searchCar" name="campoBusca">
+            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="searchCamp" required>
             <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
         <span class="col-3 col-md-2 mt-1">
@@ -135,8 +137,12 @@
                     <input type="text" readonly class="form-control" name="nameCliente" id="nameCliente"  value="<%= car.getSale().getClient().getName() %>" required>
                 </div>
                 <div class="col-sm-6 form-group text-light mt-3">
+                    <%
+                        Date data = new SimpleDateFormat("yyyy-MM-dd").parse(car.getRent().getDate().toString());
+                        String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(data);
+                    %>
                     <label for="date"> Data da Venda </label>
-                    <input type="text" readonly class="form-control" name="model" id="date" placeholder="Digite a data da venda." value="<%= car.getSale().getDate() %>" required>
+                    <input type="text" readonly class="form-control" name="model" id="date" placeholder="Digite a data da venda." value="<%= dataFormatada %>" required>
                 </div>
                 <div class="col-sm-6 form-group text-light mt-3">
                     <label for="parcel"> Quantidade de parcela </label>
@@ -147,6 +153,21 @@
                     <input type="text" readonly class="form-control" name="valueSale" id="valueSale"  value="<%= car.getSale().getValue() %>" required>
                 </div>
                 <% }%>
+                <% if(car.getRent().getId() != null && car.getRent().getDateDevolution() == null){%>
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="nameClienteRent"> Nome do Cliente </label>
+                    <input type="text" readonly class="form-control" name="nameCliente" id="nameClienteRent"  value="<%= car.getRent().getClient().getName() %>" required>
+                </div>
+                <div class="col-sm-6 form-group text-light mt-3">
+                    <label for="dateRent"> Data inicial da Locação </label>
+                    <%
+                        Date data = new SimpleDateFormat("yyyy-MM-dd").parse(car.getRent().getDate().toString());
+                        String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(data);
+                    %>
+                    <input type="text" readonly class="form-control" name="model" id="dateRent" placeholder="Digite a data da venda." value="<%= dataFormatada %>" required>
+                </div>
+                <%}%>
+
                 <div class="col-sm-6 form-group text-light mt-3">
                     <label for="desc"> Descrição</label>
                     <textarea class="form-control"  readonly name="desc" id="desc" placeholder="Digite a descrição." required style="max-height: 120px; height: 120px"><%= car.getDesc() %> </textarea>

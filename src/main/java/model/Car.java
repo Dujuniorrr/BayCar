@@ -48,6 +48,10 @@ public class Car {
         new CarDAO().deleteCar(id);
     }
 
+    public ArrayList<Car> listCarSearch(String searchCamp) {
+        return new CarDAO().listCarSearch(searchCamp);
+    }
+
     public ArrayList<Car> listCarDisponible(){
         return new CarDAO().listCarDisponible();
     }

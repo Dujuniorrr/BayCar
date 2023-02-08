@@ -213,6 +213,7 @@ public class CarDAO {
         try {
             Connection con = new DAO().conectar();
             PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, "%"+searchCamp+"%");
 
             ResultSet rs = pst.executeQuery();
 

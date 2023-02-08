@@ -37,8 +37,13 @@ public class Client {
     }
 
     public ArrayList<Client> listClients(){
-       return  new ClientDAO().listClient();
+       return new ClientDAO().listClient();
     }
+
+    public ArrayList<Client> listClientsSearch(String search) {
+        return new ClientDAO().listClientsSearch(search);
+    }
+
     public void recoverClient(String id){
         this.setId(id);
         new ClientDAO().recoverClient(this);
@@ -51,6 +56,7 @@ public class Client {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }

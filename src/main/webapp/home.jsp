@@ -37,8 +37,8 @@
           </span>
     </div>
     <div class="flex-shrink-1 mt-4 d-flex justify-content-end col-md-6 col-12 pe-3">
-        <form class="d-flex m-auto col-8 mt-0 me-3" action="buscarFornecedorPorNome" name="campoBusca">
-            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="busca" required>
+        <form class="d-flex m-auto col-8 mt-0 me-3" action="search" name="campoBusca">
+            <input class="form-control mr-2 ml-4" value="<%= request.getAttribute("search") %>" type="search" placeholder="Pesquisar" aria-label="Search" name="searchCamp" required>
             <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
           <span class="col-3 col-md-2 mt-1">
@@ -101,11 +101,13 @@
                     <div class="card-title d-flex m-auto col-4 fw-bold text-light" style="color: white; font-size: large;"><%= listCars.get(i).getName()%></div>
                     <div class="d-flex justify-content-start m-auto col-5" style="color: white; font-size: x-large;">R$ <%= listCars.get(i).getValue()%></div>
                     <div class="col-3">
+                        <%if(listCars.get(i).getState().equals("Disponivel")) {%>
                         <div class="d-flex justify-content-end m-auto">
                             <a href="saleCar?id=<%=listCars.get(i).getId()%>">
                                 <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-cart-shopping"></i></button>
                             </a>
                         </div>
+                        <%}%>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mt-2">
@@ -162,13 +164,14 @@
                     <div class="d-flex justify-content-start m-auto col-6" style="color: white; font-size: x-large;">R$ <%= listOlderCars.get(i).getValue() %></div>
                     <div class="col-3">
                         <div class="d-flex justify-content-end m-auto">
-
+                            <%if(listOlderCars.get(i).getState().equals("Disponivel")) {%>
                             <a href="saleOlderCar?id=<%= listOlderCars.get(i).getId() %>">
                                 <button class="btn-lg p-1 pe-2 ps-2 me-2 fs-4 rounded-2"><i class="fa-solid fa-cart-shopping"></i></button>
                             </a>
-                            <a href="rent?id=<%= listOlderCars.get(i).getId() %>">
+                            <a href="rentCar?id=<%= listOlderCars.get(i).getId() %>">
                                 <button class="btn-lg p-1 fs-4 pe-2 ps-2 rounded-2"><i class="fa-solid fa-key"></i></button>
                             </a>
+                            <%}%>
 
 
                         </div>

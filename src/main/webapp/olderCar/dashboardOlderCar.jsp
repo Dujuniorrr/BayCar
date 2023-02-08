@@ -7,10 +7,8 @@
     if(manager == null){
         response.sendRedirect("login.jsp");
     }
-
     ArrayList<OlderCar> listOlderCarsSolds = (ArrayList<OlderCar>) request.getAttribute("olderCarsSold");
     ArrayList<OlderCar> listOlderCarsRented = (ArrayList<OlderCar>) request.getAttribute("olderCarsRented");
-
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +35,8 @@
           </span>
     </div>
     <div class="flex-shrink-1 mt-4 d-flex justify-content-end col-md-6 col-12 pe-3">
-        <form class="d-flex m-auto col-8 mt-0 me-3" action="buscarFornecedorPorNome" name="campoBusca">
-            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="busca" required>
+        <form class="d-flex m-auto col-8 mt-0 me-3" action="searchOlderCar" name="campoBusca">
+            <input class="form-control mr-2 ml-4" type="search" placeholder="Pesquisar" aria-label="Search" name="searchCamp" required>
             <button class="btn" style="background-color: rgb(177, 13, 13);" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
         <span class="col-3 col-md-2 mt-1">

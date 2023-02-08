@@ -21,6 +21,7 @@ public class OlderCar extends Car {
         this.setState("Disponivel");
         new OlderCarDAO().addCar(this);
     }
+
     public void deleteOlderCar(String id){
         new OlderCarDAO().deleteCar(id);
     }
@@ -55,6 +56,10 @@ public class OlderCar extends Car {
 
     public ArrayList<OlderCar> listOlderCarSold(){
         return new OlderCarDAO().listOlderCarSold();
+    }
+
+    public ArrayList<OlderCar> listOlderCarSearch(String searchCamp) {
+        return new OlderCarDAO().listOlderCarSearch(searchCamp);
     }
 
     public float getMileage() {

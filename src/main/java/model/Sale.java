@@ -8,9 +8,7 @@ import java.util.ArrayList;
 public class Sale {
     private String id;
     private Date date;
-
     private int parcel;
-
     private float value;
     private Client client;
 
@@ -18,7 +16,7 @@ public class Sale {
         this.setDate(date);
         this.setClient(client);
         this.setParcel(parcel);
-//        float value = (float) calculateValue(valueCar, parcel);
+        float value = (float) calculateValue(valueCar, parcel);
         this.setValue(value);
         new SaleDAO().addSaleOfCar(this, idCar);
     }
@@ -27,14 +25,14 @@ public class Sale {
         this.setDate(date);
         this.setClient(client);
         this.setParcel(parcel);
-//        float value = (float) calculateValue(valueCar, parcel);
+        float value = (float) calculateValue(valueCar, parcel);
         this.setValue(value);
         new SaleDAO().addSaleOfOlderCar(this, idCar);
     }
 
-//    public double calculateValue(float valueCar, int parcel){
-//
-//    }
+    public double calculateValue(float valueCar, int parcel) {
+        return valueCar + (valueCar * (0.02 * parcel));
+    }
 
     public void recoverSaleByCar(String idCar){
         new SaleDAO().recoverSaleByCar(this, idCar);

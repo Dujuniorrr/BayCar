@@ -265,4 +265,36 @@ public class OlderCarDAO {
             return null;
         }
     }
+
+    public ArrayList<OlderCar> listOlderCarSearch(String searchCamp) {
+                String sql = "SELECT * FROM older_car WHERE name LIKE ?";
+        ArrayList<OlderCar> olderCars = new ArrayList<OlderCar>();
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+
+            pst.setString(1, "%"+searchCamp+"%");
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()){
+                OlderCar car = new OlderCar();
+                car.setName(rs.getString("name"));
+                car.setYear(rs.getInt("year_car"));
+                car.setId(rs.getString("id"));
+                car.setValue(rs.getFloat("value_car"));
+                car.setPathImage(rs.getString("path_img"));
+                car.setDesc(rs.getString("description"));
+                car.setMark(rs.getString("mark"));
+                car.setModel(rs.getString("model"));
+                car.setMileage(rs.getFloat("mileage"));
+                car.setState(rs.getString("state"));
+                olderCars.add(car);
+            }
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(olderCars.size());
+        return olderCars;
+    }
 }

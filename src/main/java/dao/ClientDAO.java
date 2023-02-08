@@ -139,4 +139,33 @@ public class ClientDAO {
             return null;
         }
     }
+
+    public ArrayList<Client> listClientsSearch(String search) {
+        ArrayList<Client> clis = new ArrayList<Client>();
+        String sql = "SELECT * FROM client WHERE name LIKE ?";
+
+        try {
+            Connection con = new DAO().conectar();
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, "%"+search+"%");
+
+            ResultSet rs = pst.executeQuery();
+
+            while(rs.next()) {
+                Client cli = new Client();
+                cli.setName(rs.getString("name"));
+                cli.setEmail(rs.getString("email"));
+                cli.setId(rs.getString("id"));
+                cli.setAdress(rs.getString("adress"));
+                cli.setPhone(rs.getString("phone"));
+                cli.setCpf(rs.getString("cpf"));
+                clis.add(cli);
+            }
+            con.close();
+            return clis;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

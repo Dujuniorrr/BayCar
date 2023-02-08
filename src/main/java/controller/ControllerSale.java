@@ -56,6 +56,7 @@ public class ControllerSale extends HttpServlet {
         ArrayList<Client> clients = client.listClients();
         request.setAttribute("car", car);
         request.setAttribute("clients", clients);
+
         RequestDispatcher rd = request.getRequestDispatcher("sale/addSale.jsp");
         rd.forward(request, response);
     }
@@ -63,9 +64,10 @@ public class ControllerSale extends HttpServlet {
     public void addSaleCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idCar = request.getParameter("car");
         client.recoverClient(request.getParameter("client"));
-        Date date = Date.valueOf(request.getParameter("date"));
         float valueCar = Float.parseFloat(request.getParameter("value"));
         int parcel = Integer.parseInt(request.getParameter("parcel"));
+        Date date = new java.sql.Date(System.currentTimeMillis());
+
         sale.addSaleCar(date, parcel, idCar, client, valueCar);
         response.sendRedirect("home");
     }
@@ -73,9 +75,10 @@ public class ControllerSale extends HttpServlet {
     public void addSaleOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idCar = request.getParameter("car");
         client.recoverClient(request.getParameter("client"));
-        Date date = Date.valueOf(request.getParameter("date"));
         float valueCar = Float.parseFloat(request.getParameter("value"));
         int parcel = Integer.parseInt(request.getParameter("parcel"));
+        Date date = new java.sql.Date(System.currentTimeMillis());
+
         sale.addSaleOlderCar(date, parcel, idCar, client, valueCar);
         response.sendRedirect("home");
     }

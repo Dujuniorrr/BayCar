@@ -49,7 +49,7 @@ public class RentDAO {
     }
 
     public void recoverRentByOlderCar(Rent rent, String idOlderCar){
-        String sql = "SELECT * FROM rent WHERE id_older_car = ?";
+        String sql = "SELECT * FROM rent WHERE id_older_car = ? AND date_devolution = null";
 
         try {
             Connection con = new DAO().conectar();
@@ -62,6 +62,7 @@ public class RentDAO {
                 rent.setParcel(rs.getInt("parcel"));
                 rent.setValue(rs.getFloat("value_rent"));
                 rent.setMileage(rs.getFloat("mileage"));
+                rent.setId(rs.getString("id"));
                 Client client = new Client();
                 client.recoverClient(rs.getString("id_client"));
                 rent.setClient(client);

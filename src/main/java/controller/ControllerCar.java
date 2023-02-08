@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/dashboardCar", "/addCar", "/viewCar", "/selectCar", "/editCar", "/deleteCar"})
+@WebServlet(urlPatterns = {"/dashboardCar", "/addCar", "/viewCar", "/selectCar", "/editCar", "/deleteCar", "/search", "/searchCar", "/searchOlderCar"})
 public class ControllerCar extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +39,57 @@ public class ControllerCar extends HttpServlet {
             deleterCar(request, response);
         } else if(action.equals("/viewCar")){
             viewCar(request, response);
+        } else if(action.equals("/search")) {
+            search(request, response);
+        } else if(action.equals("/searchCar")) {
+            searchCar(request, response);
+        } else if(action.equals("/searchOlderCar")) {
+            searchOlderCar(request, response);
         }
+    }
+
+    private void searchOlderCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<OlderCar> olderCars = new OlderCar().listOlderCarSearch(request.getParameter("searchCamp"));
+
+        ArrayList<OlderCar> listOlderCarsSolds = new ArrayList<OlderCar>();
+        ArrayList<OlderCar> listOlderCarsRented = new ArrayList<OlderCar>();
+
+        for(int i = 0; i < olderCars.size(); i++) {
+            if(olderCars.get(i).getState().equals("Vendido")) {
+                listOlderCarsSolds.add(olderCars.get(i));
+            } else if (olderCars.get(i).getState().equals("Alugado")){
+                listOlderCarsRented.add(olderCars.get(i));
+            }
+        }
+
+        request.setAttribute("olderCarsSold", listOlderCarsSolds);
+        request.setAttribute("olderCarsRented", listOlderCarsRented);
+        request.setAttribute("search", request.getParameter("searchCamp"));
+
+        RequestDispatcher rd = request.getRequestDispatcher("olderCar/dashboardOlderCar.jsp");
+        rd.forward(request, response);
+    }
+
+    private void searchCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<Car> cars = car.listCarSearch(request.getParameter("searchCamp"));
+
+        request.setAttribute("search", request.getParameter("searchCamp"));
+        request.setAttribute("carsSold", cars);
+
+        RequestDispatcher rd = request.getRequestDispatcher("car/dashboardCar.jsp");
+        rd.forward(request, response);
+    }
+
+    private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ArrayList<Car> cars = car.listCarSearch(request.getParameter("searchCamp"));
+        ArrayList<OlderCar> olderCars = new OlderCar().listOlderCarSearch(request.getParameter("searchCamp"));
+
+        request.setAttribute("search", request.getParameter("searchCamp"));
+        request.setAttribute("cars", cars);
+        request.setAttribute("olderCars", olderCars);
+
+        RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
+        rd.forward(request, response);
     }
 
     public void dashboardCar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
