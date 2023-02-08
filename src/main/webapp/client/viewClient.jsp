@@ -4,7 +4,8 @@
 <%@ page import="model.Car" %>
 <%@ page import="model.OlderCar" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="dao.DAO" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="dao.CarDAO" %>
 <%@ page import="dao.OlderCarDAO" %>
 <%@ page import="model.Client" %>
@@ -224,11 +225,17 @@
                             %>
                             <%= olderCar.getName() %>
                         </td>
-                        <td class="text-light d-none d-md-table-cell"> <%= rents.get(i).getDate() %></td>
+                        <%
+                            Date data = new SimpleDateFormat("yyyy-MM-dd").parse(rents.get(i).getDate().toString());
+                            String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(data);
+                            data = new SimpleDateFormat("yyyy-MM-dd").parse(rents.get(i).getDateDevolution().toString());
+                            String dataFormatada2 = new SimpleDateFormat("dd-MM-yyyy").format(data);
+                        %>
+                        <td class="text-light d-none d-md-table-cell"> <%= dataFormatada %></td>
                         <td class="text-light d-md-table-cell"><%= rents.get(i).getValue() %></td>
                         <td class="text-light d-none d-md-table-cell"><%= rents.get(i).getParcel() %></td>
                         <% if(rents.get(i).getDateDevolution() != null){ %>
-                        <td class="text-light d-none d-md-table-cell"><%= rents.get(i).getDateDevolution() %></td>
+                        <td class="text-light d-none d-md-table-cell"><%= dataFormatada2 %></td>
                         <% }else{%>
                         <td class="text-light d-none d-md-table-cell">Não devolvido</td>
                         <%}%>
