@@ -102,37 +102,6 @@ public class OlderCarDAO {
         }
     }
 
-    public ArrayList<OlderCar> listOlderCar(){
-        ArrayList<OlderCar> olderCars = new ArrayList<OlderCar>();
-        String sql = "SELECT * FROM older_car ORDER BY name";
-
-        try {
-            Connection con = new DAO().conectar();
-            PreparedStatement pstm = con.prepareStatement(sql);
-
-            ResultSet rs = pstm.executeQuery();
-            while(rs.next()){
-                OlderCar car = new OlderCar();
-                car.setName(rs.getString("name"));
-                car.setYear(rs.getInt("year_car"));
-                car.setId(rs.getString("id"));
-                car.setValue(rs.getFloat("value_car"));
-                car.setPathImage(rs.getString("path_img"));
-                car.setDesc(rs.getString("description"));
-                car.setMark(rs.getString("mark"));
-                car.setModel(rs.getString("model"));
-                car.setMileage(rs.getFloat("mileage"));
-                car.setState(rs.getString("state"));
-                olderCars.add(car);
-            }
-            con.close();
-            return olderCars;
-        } catch(Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public ArrayList<OlderCar> listOlderCarSold(){
         ArrayList<OlderCar> olderCars = new ArrayList<OlderCar>();
         String sql = "SELECT * FROM older_car WHERE state = 'Vendido' ORDER BY name";

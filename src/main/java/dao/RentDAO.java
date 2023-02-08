@@ -32,22 +32,6 @@ public class RentDAO {
         }
     }
 
-    public void editRentOfOlderCar(Rent rent, String idOlderCar){
-        String sql = "UPDATE rent SET date_rent = ?, parcel = ?, id_client =? WHERE id_older_car = ?";
-        try {
-            Connection con = new DAO().conectar();
-            PreparedStatement pst = con.prepareStatement(sql);
-            pst.setDate(1, rent.getDate());
-            pst.setInt(2, rent.getParcel());
-            pst.setString(3,rent.getClient().getId());
-            pst.setString(4, idOlderCar);
-            pst.executeUpdate();
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
     public void recoverRentByOlderCar(Rent rent, String idOlderCar){
         String sql = "SELECT * FROM rent WHERE id_older_car = ? AND date_devolution = null";
 
@@ -126,38 +110,6 @@ public class RentDAO {
         }
         return null;
     }
-    public ArrayList<Rent> listRentByOlderCar(String idOlderCar){
-        ArrayList<Rent> rents = new ArrayList<Rent>();
-        String sql = "SELECT * FROM rent WHERE id_older_car = ?";
-
-        try {
-            Connection con = new DAO().conectar();
-            PreparedStatement pstm = con.prepareStatement(sql);
-            pstm.setString(1, idOlderCar);
-            ResultSet rs = pstm.executeQuery();
-
-            if(rs.next()){
-                Rent rent = new Rent();
-                rent.setId(rs.getString("id"));
-                rent.setDate(rs.getDate("date_rent"));
-                rent.setDateDevolution(rs.getDate("date_devolution"));
-                rent.setParcel(rs.getInt("parcel"));
-                rent.setValue(rs.getFloat("value_rent"));
-                rent.setMileage(rs.getFloat("mileage"));
-                Client client = new Client();
-                client.recoverClient(rs.getString("id_client"));
-                rent.setClient(client);
-                rents.add(rent);
-            }
-
-            con.close();
-            return rents;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
 
     public ArrayList<Rent> recoverRentsByClient(String id) {
         String sql = "SELECT * FROM rent WHERE id_client = ?";
