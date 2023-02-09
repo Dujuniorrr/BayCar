@@ -138,7 +138,7 @@
                 </div>
                 <div class="col-sm-6 form-group text-light mt-3">
                     <%
-                        Date data = new SimpleDateFormat("yyyy-MM-dd").parse(car.getRent().getDate().toString());
+                        Date data = new SimpleDateFormat("yyyy-MM-dd").parse(car.getSale().getDate().toString());
                         String dataFormatada = new SimpleDateFormat("dd-MM-yyyy").format(data);
                     %>
                     <label for="date"> Data da Venda </label>

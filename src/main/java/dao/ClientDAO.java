@@ -111,7 +111,7 @@ public class ClientDAO {
 
     public ArrayList<Client> listClient(){
         ArrayList<Client> clis = new ArrayList<Client>();
-        String sql = "SELECT * FROM client";
+        String sql = "SELECT * FROM client ORDER BY name";
 
         try {
             Connection con = new DAO().conectar();
